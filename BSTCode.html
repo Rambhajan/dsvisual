@@ -1,0 +1,534 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="visualPages.css">
+
+  <title> Data Structure Visualization </title>
+
+  <link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <div class="header">
+      <h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right"
+          href="index.html">back</a></h1>
+    </div>
+
+    <div class="menu">
+      <ul>
+
+        <li> <a href="index.html">Home</a> </li>
+
+        <li> <a href="contact.html">Contact</a></li>
+
+        <li> <a href="faq.html"> F.A.Q </a> </li>
+
+        <li> <a href="about.html"> About us</a> </li>
+
+      </ul>
+
+      <br> <br>
+
+
+    </div>
+
+
+    <div class="content">
+
+      <h1> Binary Search Tree Data Structure</h1>
+
+
+      <ol>
+        <li style="color:black;font-size: 15px;line-height: 19px">A Binary Search Tree (BST) is a tree in which all the
+          nodes follow the below-mentioned properties −
+
+        </li><br>
+
+
+        <ul>
+          <li style="color:green ;font-size: 15px;line-height: 19px"> <b>Search </b> Searches an element in a tree.</li>
+          <li style="color:green ;font-size: 15px;line-height: 19px"> <b>Insert </b> Inserts an element in a tree.</li>
+          <li style="color:green ;font-size: 15px;line-height: 19px"> <b>Pre-order Traversal </b> Traverses a tree in a
+            pre-order manner.</li>
+          <li style="color:green ;font-size: 15px;line-height: 19px"> <b>In-order Traversal −</b> Traverses a tree in an
+            in-order manner.</li>
+          <li style="color:green ;font-size: 15px;line-height: 19px"> <b>Post-order Traversal−</b> Traverses a tree in a
+            post-order manner.</li>
+
+        </ul>
+
+
+        <br></br>
+
+        <li style="color:black ;font-size: 15px;line-height: 19px">Searching a key</li>
+
+
+        <ul>
+          <li style="color:green ;font-size: 15px;line-height: 19px">
+            For searching a value, if we had a sorted array we could have performed a binary search. Let’s say we want
+            to search a number in the array what we do in binary search is we first define the complete list as our
+            search space, the number can exist only within the search space. Now we compare the number to be searched or
+            the element to be searched with the mid element of the search space or the median and if the record being
+            searched is lesser we go searching in the left half else we go searching in the right half, in case of
+            equality we have found the element. In binary search we start with ‘n’ elements in search space and then if
+            mid element is not the element that we are looking for, we reduce the search space to ‘n/2’ and we go on
+            reducing the search space till we either find the record that we are looking for or we get to only one
+            element in search space and be done with this whole reduction.
+
+            Search operation in binary search tree will be very similar. Let’s say we want to search for number, what
+            we’ll do is we’ll start at root and then we will compare the value to be searched with value of root if it’s
+            equal we are done with the search if it’s lesser we know that we need to go to the left subtree because in a
+            binary search tree all the elements in the left subtree are lesser and all the elements in right subtree are
+            greater. Searching an element in the binary search tree is basically this traversal in which at each step we
+            will go either towards left or right and hence in at each step we discard one of the sub-trees. If the tree
+            is balanced, we call a tree balanced if for all nodes the difference between the heights of left and right
+            subtrees is not greater than one, we will start with a search space of ‘n’nodes and when we will discard one
+            of the sub-trees we will discard ‘n/2’ nodes so our search space will be reduced to ‘n/2’ and then in the
+            next step we will reduce the search space to ‘n/4’ and we will go on reducing like this till we find the
+            element or till our search space is reduced to only one node. The search here is also a binary search and
+            that’s why the name binary search tree.
+          </li>
+        </ul>
+
+        </br>
+        <li style="color:black ;font-size: 15px;line-height: 19px"> Time Complexity: :</li>
+
+        <ul>
+          <li style="color:green ;font-size: 15px;line-height: 19px">
+            The worst case time complexity of search and insert operations is O(h) where h is height of Binary Search
+            Tree. In worst case, we may have to travel from root to the deepest leaf node. The height of a skewed tree
+            may become n and the time complexity of search and insert operation may become O(n).
+          </li>
+        </ul>
+        </br>
+
+
+        <li style="color:black ;font-size: 15px ;line-height: 19px"> Operations on BST:<br><br>
+          <center>
+            <table border="1px" style="width:100%" style="font-size:20px">
+              <tr>
+                <th>S. No.</th>
+                <th>Operation </th>
+                <th>Average Case</th>
+                <th> Worst Case</th>
+              </tr>
+              <tr>
+                <td>1.</td>
+                <td>Search </td>
+                <td> O(log n)</td>
+                <td>O(n)
+                </td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td> Minimum</td>
+                <td> O(log n)</td>
+                <td> O(n)
+                </td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td> Maximum</td>
+                <td> O(log n)</td>
+                <td>O(n)</td>
+              </tr>
+              <tr>
+                <td>4.</td>
+                <td> Predecessor</td>
+                <td> O(log n)</td>
+                <td> O(n)
+                </td>
+              </tr>
+              <tr>
+                <td>5.</td>
+                <td>Succeessor </td>
+                <td> O(log n)</td>
+                <td>O(n)
+                </td>
+              </tr>
+              <tr>
+                <td>6.</td>
+                <td> Insert</td>
+                <td> O(log n)</td>
+                <td> O(n)
+                </td>
+              </tr>
+              <tr>
+                <td>7.</td>
+                <td> Delete</td>
+                <td> O(log n)</td>
+                <td> O(n)
+                </td>
+              </tr>
+            </table>
+          </center>
+          <br><br>
+
+        </li>
+        <center>
+
+
+          </br>
+          <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+            <b>
+              <hr style="border-width: 3px;color:black-dark">
+              /* C++ program to implement basic stack using array
+              operations */</b>
+
+            <br><br>
+            <td><br>
+              <br>
+              // Binary search tree implementation in C++<br>
+              // Author: Algorithm Tutor<br>
+              <br>
+              #include <br>
+              <br>
+              using namespace std;<br>
+              <br>
+              // data structure that represents a node in the tree<br>
+              struct Node {<br>
+              int data; // holds the key<br>
+              Node *parent; // pointer to the parent<br>
+              Node *left; // pointer to left child<br>
+              Node *right; // pointer to right child<br>
+              };<br>
+              <br>
+              typedef Node *NodePtr;<br>
+              <br>
+              // class BST implements the operations in BST<br>
+              class BST {<br>
+              private:<br>
+              NodePtr root;<br>
+              <br>
+              // initializes the nodes with appropirate values<br>
+              // all the pointers are set to point to the null pointer<br>
+              void initializeNode(NodePtr node, int key) {<br>
+              node->data = key;<br>
+              node->parent = nullptr;<br>
+              node->left = nullptr;<br>
+              node->right = nullptr;<br>
+              }<br>
+              <br>
+              void preOrderHelper(NodePtr node) {<br>
+              if (node != nullptr) {<br>
+              cout< data< <" ";<br>
+                    preOrderHelper(node->left);<br>
+                    preOrderHelper(node->right);<br>
+                  } <br>
+                }<br>
+                <br>
+                void inOrderHelper(NodePtr node) {<br>
+                  if (node != nullptr) {<br>
+                    inOrderHelper(node->left);<br>
+                    cout< data<<" ";<br>
+                    inOrderHelper(node->right);<br>
+                  } <br>
+                }<br>
+                <br>
+                void postOrderHelper(NodePtr node) {<br>
+                  if (node != nullptr) {<br>
+                    postOrderHelper(node->left);<br>
+                    postOrderHelper(node->right);<br>
+                    cout< data<<" ";<br>
+                  } <br>
+                }<br>
+                <br>
+                NodePtr searchTreeHelper(NodePtr node, int key) {<br>
+                  if (node == nullptr || key == node->data) {<br>
+                    return node;<br>
+                  }<br>
+                  <br>
+                  if (key < node->data) {<br>
+                    return searchTreeHelper(node->left, key);<br>
+                  } <br>
+                  return searchTreeHelper(node->right, key);<br>
+                }<br>
+                <br>
+                NodePtr deleteNodeHelper(NodePtr node, int key) {<br>
+                  // search the key<br>
+                  if (node == nullptr) return node;<br>
+                  else if (key < node->data) node->left = deleteNodeHelper(node->left, key);<br>
+                  else if (key > node->data) node->right = deleteNodeHelper(node->right, key);<br>
+                  else {<br>
+                    // the key has been found, now delete it<br>
+                    <br>
+                    // case 1: node is a leaf node<br>
+                    if (node->left == nullptr && node->right == nullptr) {<br>
+                      delete node;<br>
+                      node = nullptr;<br>
+                    }<br>
+                    <br>
+                    // case 2: node has only one child<br>
+                    else if (node->left == nullptr) {<br>
+                      NodePtr temp = node;<br>
+                      node = node->right;<br>
+                      delete temp;<br>
+                    }<br>
+                    <br>
+                    else if (node->right == nullptr) {<br>
+                      NodePtr temp = node;<br>
+                      node = node->left;<br>
+                      delete temp;<br><br>
+                    }<br>
+                    <br>
+                    // case 3: has both children<br>
+                    else {<br>
+                      NodePtr temp = minimum(node->right);<br>
+                      node->data = temp->data;<br>
+                      node->right = deleteNodeHelper(node->right, temp->data);<br>
+                    }<br>
+                    <br>
+                  } <br>
+                  return node;<br>
+                }<br>
+                <br>
+                void printHelper(NodePtr root, string indent, bool last) {<br>
+                  // print the tree structure on the screen<br>
+                     if (root != nullptr) {<br>
+                     cout<<br>
+                     if (last) {<br>
+                        cout<<" └────";<br>
+                indent += " ";<br>
+                } else {<br>
+                cout<<"├────";<br>
+                  indent += "| ";<br>
+                  }<br>
+                  <br>
+                  cout< data<<endl;<br>
+                    <br>
+                    printHelper(root->left, indent, false);<br>
+                    printHelper(root->right, indent, true);<br>
+                    }<br>
+                    }<br>
+                    <br>
+                    public:<br>
+                    BST() {<br>
+                    root = nullptr;<br>
+                    }<br>
+                    <br>
+                    void createSampleTree1() {<br>
+                    NodePtr node50 = new Node;<br>
+                    initializeNode(node50, 50);<br>
+                    NodePtr node30 = new Node;<br>
+                    initializeNode(node30, 30);<br>
+                    NodePtr node70 = new Node;<br>
+                    initializeNode(node70, 70);<br>
+                    <br>
+                    node30->parent = node50;<br><br>
+                    node70->parent = node50;<br>
+                    node50->left = node30;<br>
+                    node50->right = node70;<br>
+                    <br>
+                    NodePtr node23 = new Node;<br>
+                    initializeNode(node23, 23);<br>
+                    NodePtr node35 = new Node;<br>
+                    initializeNode(node35, 35);<br>
+                    <br>
+                    node23->parent = node30;<br>
+                    node35->parent = node30;<br>
+                    node30->left = node23;<br>
+                    node30->right = node35;<br>
+                    <br>
+                    NodePtr node11 = new Node;<br>
+                    initializeNode(node11, 11);<br>
+                    NodePtr node25 = new Node;<br>
+                    initializeNode(node25, 25);<br>
+                    <br>
+                    node11->parent = node23;<br>
+                    node25->parent = node23;<br>
+                    node23->left = node11;<br>
+                    node23->right = node25;<br>
+                    <br>
+                    NodePtr node31 = new Node;<br>
+                    initializeNode(node31, 31);<br>
+                    NodePtr node42 = new Node;<br>
+                    initializeNode(node42, 42);<br>
+                    <br>
+                    node31->parent = node35;<br>
+                    node42->parent = node35;<br>
+                    node35->left = node31;<br>
+                    node35->right = node42;<br>
+                    <br>
+                    NodePtr node80 = new Node;<br>
+                    initializeNode(node80, 80);<br>
+                    <br>
+                    node80->parent = node70;<br>
+                    node70->right = node80;<br>
+                    <br>
+                    NodePtr node73 = new Node;<br>
+                    initializeNode(node73, 73);<br>
+                    NodePtr node85 = new Node;<br>
+                    initializeNode(node85, 85);<br>
+                    <br>
+                    node73->parent = node80;<br>
+                    node85->parent = node80;<br>
+                    node80->left = node73;<br>
+                    node80->right = node85;<br>
+                    <br>
+                    this->root = node50;<br>
+                    }<br>
+                    <br>
+                    // Pre-Order traversal<br>
+                    // Node->Left Subtree->Right Subtree<br>
+                    void preorder() {<br>
+                    preOrderHelper(this->root);<br>
+                    }
+                    <br>
+                    // In-Order traversal<br>
+                    // Left Subtree -> Node -> Right Subtree<br>
+                    void inorder() {<br>
+                    inOrderHelper(this->root);<br>
+                    }<br>
+                    <br>
+                    // Post-Order traversal<br>
+                    // Left Subtree -> Right Subtree -> Node<br>
+                    void postorder() {<br>
+                    postOrderHelper(this->root);<br>
+                    }<br>
+                    <br>
+                    // search the tree for the key k<br>
+                    // and return the corresponding node<br>
+                    NodePtr searchTree(int k) {<br>
+                    return searchTreeHelper(this->root, k);<br>
+                    }<br>
+                    <br>
+                    // find the node with the minimum key<br>
+                    NodePtr minimum(NodePtr node) {<br>
+                    while (node->left != nullptr) {<br>
+                    node = node->left;<br>
+                    }<br>
+                    return node;<br>
+                    }<br>
+                    <br>
+                    // find the node with the maximum key<br>
+                    NodePtr maximum(NodePtr node) {<br>
+                    while (node->right != nullptr) {<br>
+                    node = node->right;<br>
+                    }<br>
+                    return node;<br>
+                    }<br>
+                    <br>
+                    // find the successor of a given node<br>
+                    NodePtr successor(NodePtr x) {<br>
+                    // if the right subtree is not null,<br>
+                    // the successor is the leftmost node in the<br>
+                    // right subtree<br>
+                    if (x->right != nullptr) {<br>
+                    return minimum(x->right);<br>
+                    }<br>
+                    <br>
+                    // else it is the lowest ancestor of x whose<br><br>
+                    // left child is also an ancestor of x.<br>
+                    NodePtr y = x->parent;<br>
+                    while (y != nullptr && x == y->right) {<br>
+                    x = y;<br>
+                    y = y->parent;<br>
+                    }<br>
+                    return y;<br>
+                    }<br>
+                    <br>
+                    // find the predecessor of a given node<br>
+                    NodePtr predecessor(NodePtr x) {<br>
+                    // if the left subtree is not null,<br>
+                    // the predecessor is the rightmost node in the <br>
+                    // left subtree<br>
+                    if (x->left != nullptr) {<br>
+                    return maximum(x->left);<br>
+                    }<br>
+                    <br>
+                    NodePtr y = x->parent;<br>
+                    while (y != nullptr && x == y->left) {<br>
+                    x = y;<br>
+                    y = y->parent;<br>
+                    }<br>
+                    <br>
+                    return y;<br>
+                    }<br>
+
+                    // insert the key to the tree in its appropriate position<br>
+                    void insert(int key) {<br>
+                    NodePtr node = new Node;<br>
+                    node->parent = nullptr;<br>
+                    node->left = nullptr;<br>
+                    node->right = nullptr;<br>
+                    node->data = key;<br>
+                    NodePtr y = nullptr;<br>
+                    NodePtr x = this->root;<br>
+                    <br>
+                    while (x != nullptr) {<br>
+                    y = x;<br>
+                    if (node->data < x->data) {<br>
+                      x = x->left;<br>
+                      } else {<br>
+                      x = x->right;<br>
+                      }<br>
+                      }<br>
+                      <br>
+                      // y is parent of x<br>
+                      node->parent = y;<br>
+                      if (y == nullptr) {<br>
+                      root = node;<br>
+                      } else if (node->data < y->data) {<br>
+                        y->left = node;<br>
+                        } else {<br>
+                        y->right = node;<br>
+                        }<br>
+                        }<br>
+                        <br>
+                        NodePtr getRoot(){<br>
+                        return this->root;<br>
+                        }<br>
+                        <br>
+                        // delete the node from the tree<br>
+                        NodePtr deleteNode(int data) {<br>
+                        return deleteNodeHelper(this->root, data);<br>
+                        }<br>
+                        <br>
+                        // print the tree structure on the screen<br>
+                        void prettyPrint() {<br>
+                        printHelper(this->root, "", true);<br>
+                        }<br>
+                        <br>
+                        };<br>
+                        <br>
+                        int main() {<br>
+                        BST bst;<br>
+                        bst.createSampleTree1();<br>
+                        bst.prettyPrint();<br>
+                        return 0;<br>
+                        }<br>
+                        <br>
+                        <br>
+            </td>
+          </table>
+        </center>
+        <hr style="border-width: 3px;color:black-dark">
+        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+
+      </ol>
+      <br>
+      <br>
+      <br>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="footer ;font-size: 12px">
+    Copyright 2020
+  </div>
+
+</body>
+
+</html>

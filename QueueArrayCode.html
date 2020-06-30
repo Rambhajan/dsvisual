@@ -1,0 +1,559 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Queue Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">A Queue is a linear structure which follows a particular order in which the operations are performed. The order is First In First Out (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer that came first is served first. The difference between stacks and queues is in removing. In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added.<br>
+<br><b>Operations on Queue:</b><br>
+</li><br>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Enqueue:</b>  Adds an item to the queue. If the queue is full, then it is said to be an Overflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Dequeue:</b>  Removes an item from the queue. The items are popped in the same order in which they are pushed. If the queue is empty, then it is said to be an Underflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Front: </b>  Get the front item from queue.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Rear:</b>  Get the last item from queue.
+  .</li>
+
+</ul>
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">Array implementation Of Queue</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    For implementing queue, we need to keep track of two indices, front and rear. We enqueue an item at the rear and dequeue an item from the front. If we simply increment front and rear indices, then there may be problems, the front may reach the end of the array. The solution to this problem is to increase front and rear in circular manner (See this for details)
+</li>
+</ul>
+
+</br>
+</br>
+
+
+<li style="color:black ;font-size: 15px ;line-height: 19px"> Implementation:
+  There are two ways to implement a queue:</br>
+  
+  1. Using array
+  2. Using linked list<br><br>
+
+</li>
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic queue using array
+  operations */</b>
+ 
+  <br><br>
+<td >
+    // CPP program for array <br>
+    // implementation of queue <br>
+    #include <bits/stdc++.h> <br>
+    using namespace std; <br>
+    <br>
+    // A structure to represent a queue <br>
+    class Queue { <br>
+    public: <br>
+      int front, rear, size; <br>
+      unsigned capacity; <br>
+      int* array; <br>
+    }; <br><br>
+    <br>
+    // function to create a queue <br>
+    // of given capacity. <br>
+    // It initializes size of queue as 0 <br>
+    Queue* createQueue(unsigned capacity) <br>
+    { <br>
+      Queue* queue = new Queue(); <br>
+      queue->capacity = capacity; <br>
+      queue->front = queue->size = 0; <br>
+      <br>
+      // This is important, see the enqueue <br>
+      queue->rear = capacity - 1; <br>
+      queue->array = new int[( <br>
+        queue->capacity * sizeof(int))]; <br>
+      return queue; <br>
+    } <br>
+    <br>
+    // Queue is full when size <br>
+    // becomes equal to the capacity <br>
+    int isFull(Queue* queue) <br>
+    { <br>
+      return (queue->size == queue->capacity); <br>
+    } <br>
+    <br>
+    // Queue is empty when size is 0 <br>
+    int isEmpty(Queue* queue) <br>
+    { <br>
+      return (queue->size == 0); <br>
+    } <br>
+    <br>
+    // Function to add an item to the queue. <br>
+    // It changes rear and size <br>
+    void enqueue(Queue* queue, int item) <br>
+    { <br>
+      if (isFull(queue)) <br>
+        return; <br>
+      queue->rear = (queue->rear + 1) <br>
+            % queue->capacity; <br>
+      queue->array[queue->rear] = item; <br>
+      queue->size = queue->size + 1; <br>
+      cout << item << " enqueued to queue\n"; <br>
+    } <br>
+    <br>
+    // Function to remove an item from queue. <br>
+    // It changes front and size <br>
+    int dequeue(Queue* queue) <br>
+    { <br>
+      if (isEmpty(queue)) <br>
+        return INT_MIN; <br>
+      int item = queue->array[queue->front]; <br>
+      queue->front = (queue->front + 1) <br>
+            % queue->capacity; <br>
+      queue->size = queue->size - 1; <br>
+      return item; <br>
+    } <br>
+    <br>
+    // Function to get front of queue <br>
+    int front(Queue* queue) <br>
+    { <br>
+      if (isEmpty(queue)) <br>
+        return INT_MIN; <br>
+      return queue->array[queue->front]; <br>
+    } <br>
+    <br>
+    // Function to get rear of queue <br>
+    int rear(Queue* queue) <br>
+    { <br>
+      if (isEmpty(queue)) <br>
+        return INT_MIN; <br>
+      return queue->array[queue->rear]; <br>
+    } <br>
+    <br>
+    // Driver code <br>
+    int main() <br>
+    { <br>
+      Queue* queue = createQueue(1000); <br>
+      <br>
+      enqueue(queue, 10); <br>
+      enqueue(queue, 20); <br>
+      enqueue(queue, 30); <br>
+      enqueue(queue, 40); <br>
+      <br>
+      cout << dequeue(queue) <br>
+        << " dequeued from queue\n"; <br>
+        <br>
+      cout << "Front item is "<br>
+        << front(queue) << endl; <br>
+      cout << "Rear item is "<br>
+        << rear(queue) << endl; <br>
+        <br>
+      return 0; <br>
+    } <br>
+    <br>
+    
+    <br>
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b>/* C program to implement basic queue using array
+    operations */</b>
+   
+    <br><br>
+  <td >
+      // C program for array implementation of queue <br>
+      #include <limits.h> <br>
+      #include <stdio.h> <br>
+      #include <stdlib.h> <br>
+        <br>
+      // A structure to represent a queue <br>
+      struct Queue { <br>
+        int front, rear, size; <br>
+        unsigned capacity; <br>
+        int* array; <br>
+      }; <br>
+      <br>
+      // function to create a queue <br>
+      // of given capacity. <br>
+      // It initializes size of queue as 0 <br>
+      struct Queue* createQueue(unsigned capacity) <br>
+      { <br>
+        struct Queue* queue = (struct Queue*)malloc( <br>
+          sizeof(struct Queue)); <br>
+        queue->capacity = capacity; <br>
+        queue->front = queue->size = 0; <br>
+        <br>
+        // This is important, see the enqueue <br>
+        queue->rear = capacity - 1; <br>
+        queue->array = (int*)malloc( <br>
+          queue->capacity * sizeof(int));<br> 
+        return queue; <br>
+      } <br>
+      <br>
+      // Queue is full when size becomes <br>
+      // equal to the capacity <br>
+      int isFull(struct Queue* queue) <br>
+      { <br>
+        return (queue->size == queue->capacity); <br>
+      } <br>
+      <br>
+      // Queue is empty when size is 0 <br>
+      int isEmpty(struct Queue* queue) <br>
+      { <br>
+        return (queue->size == 0); <br>
+      } <br>
+      <br>
+      // Function to add an item to the queue. <br>
+      // It changes rear and size <br>
+      void enqueue(struct Queue* queue, int item) <br>
+      { <br>
+        if (isFull(queue)) <br>
+          return; <br>
+        queue->rear = (queue->rear + 1) <br>
+              % queue->capacity; <br>
+        queue->array[queue->rear] = item; <br>
+        queue->size = queue->size + 1; <br>
+        printf("%d enqueued to queue\n", item); <br>
+      } <br>
+      <br>
+      // Function to remove an item from queue. <br>
+      // It changes front and size <br>
+      int dequeue(struct Queue* queue) <br>
+      { <br>
+        if (isEmpty(queue)) <br>
+          return INT_MIN; <br>
+        int item = queue->array[queue->front]; <br>
+        queue->front = (queue->front + 1) <br>
+              % queue->capacity; <br>
+        queue->size = queue->size - 1; <br>
+        return item; <br>
+      } <br>
+      <br>
+      // Function to get front of queue <br>
+      int front(struct Queue* queue) <br>
+      { <br>
+        if (isEmpty(queue)) <br>
+          return INT_MIN; <br>
+        return queue->array[queue->front]; <br>
+      } <br>
+      <br>
+      // Function to get rear of queue <br>
+      int rear(struct Queue* queue) <br>
+      { <br>
+        if (isEmpty(queue)) <br>
+          return INT_MIN; <br>
+        return queue->array[queue->rear]; <br>
+      } <br>
+      <br>
+      // Driver program to test above functions./ <br>
+      int main() <br>
+      { <br>
+        struct Queue* queue = createQueue(1000); <br><br>
+        <br>
+        enqueue(queue, 10); <br>
+        enqueue(queue, 20); <br>
+        enqueue(queue, 30); <br>
+        enqueue(queue, 40); <br>
+        <br>
+        printf("%d dequeued from queue\n\n", <br>
+          dequeue(queue)); <br>
+          <br>
+        printf("Front item is %d\n", front(queue)); <br>
+        printf("Rear item is %d\n", rear(queue)); <br>
+        <br>
+        return 0; <br>
+      } <br>
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+
+<!-- ------------------------------------------ -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement basic queue 
+      operations */</b>
+   
+    <br><br>
+  <td >
+    <br>
+    <br>
+      // Java program for array <br>
+      // implementation of queue <br>
+      <br>
+      // A class to represent a queue <br>
+      class Queue { <br>
+        int front, rear, size; <br>
+        int capacity; <br>
+        int array[]; <br>
+        <br>
+        public Queue(int capacity) <br>
+        { <br>
+          this.capacity = capacity; <br>
+          front = this.size = 0; <br>
+          rear = capacity - 1; <br>
+          array = new int[this.capacity]; <br><br>
+        } <br>
+        <br>
+        // Queue is full when size becomes <br>
+        // equal to the capacity <br>
+        boolean isFull(Queue queue) <br>
+        { <br>
+          return (queue.size == queue.capacity); <br>
+        } <br>
+        <br>
+        // Queue is empty when size is 0 <br>
+        boolean isEmpty(Queue queue) <br>
+        { <br>
+          return (queue.size == 0); <br>
+        } <br>
+        <br>
+        // Method to add an item to the queue. <br>
+        // It changes rear and size <br>
+        void enqueue(int item) <br>
+        { <br>
+          if (isFull(this)) <br>
+            return; <br>
+          this.rear = (this.rear + 1) <br>
+                % this.capacity; <br>
+          this.array[this.rear] = item; <br>
+          this.size = this.size + 1; <br>
+          System.out.println(item <br>
+                  + " enqueued to queue"); <br>
+        } <br>
+        <br>
+        // Method to remove an item from queue. <br>
+        // It changes front and size <br>
+        int dequeue() <br>
+        { <br>
+          if (isEmpty(this)) <br>
+            return Integer.MIN_VALUE; <br>
+            <br>
+          int item = this.array[this.front]; <br>
+          this.front = (this.front + 1) <br>
+                % this.capacity; <br>
+          this.size = this.size - 1; <br>
+          return item; <br>
+        } <br>
+        <br>
+        // Method to get front of queue <br>
+        int front() <br>
+        { <br>
+          if (isEmpty(this)) <br>
+            return Integer.MIN_VALUE; <br>
+            <br>
+          return this.array[this.front];  <br> <br>
+        }  <br>
+      
+        // Method to get rear of queue  <br>
+        int rear()  <br>
+        {  <br>
+          if (isEmpty(this))  <br>
+            return Integer.MIN_VALUE;  <br>
+            <br>
+          return this.array[this.rear];  <br>
+        }  <br>
+      }  <br>
+      <br>
+      // Driver class  <br>
+      public class Test {  <br>
+        public static void main(String[] args)  <br>
+        {  <br>
+          Queue queue = new Queue(1000);  <br>
+          <br>
+          queue.enqueue(10);  <br>
+          queue.enqueue(20);  <br>
+          queue.enqueue(30);  <br>
+          queue.enqueue(40);  <br>
+          <br>
+          System.out.println(queue.dequeue()  <br>
+                  + " dequeued from queue\n");
+                  <br>
+          System.out.println("Front item is "
+                  + queue.front());  <br>
+                  <br>
+          System.out.println("Rear item is "
+                  + queue.rear());  <br>
+        }  <br>
+      }  <br>
+      <br>
+      
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement basic queue
+      operations */</b>
+   
+    <br><br>
+  <td >
+    <br>
+      # Python3 program for array implementation of queue <br>
+      <br>
+      # Class Queue to represent a queue <br>
+      class Queue: <br>
+      <br>
+        # __init__ function <br>
+        def __init__(self, capacity): <br>
+          self.front = self.size = 0<br>
+          self.rear = capacity -1<br>
+          self.Q = [None]*capacity <br>
+          self.capacity = capacity <br>
+          <br>
+        # Queue is full when size becomes <br>
+        # equal to the capacity <br>
+        def isFull(self): <br>
+          return self.size == self.capacity <br>
+          <br>
+        # Queue is empty when size is 0 <br>
+        def isEmpty(self): <br>
+          return self.size == 0<br>
+          <br>
+        # Function to add an item to the queue. <br>
+        # It changes rear and size <br>
+        def EnQueue(self, item): <br>
+          if self.isFull(): <br>
+            print("Full") <br>
+            return<br>
+          self.rear = (self.rear + 1) % (self.capacity) <br>
+          self.Q[self.rear] = item <br>
+          self.size = self.size + 1<br>
+          print("% s enqueued to queue" % str(item)) <br>
+          <br>
+        # Function to remove an item from queue. <br>
+        # It changes front and size <br>
+        def DeQueue(self): <br>
+          if self.isEmpty(): <br>
+            print("Empty") <br>
+            return<br>
+            <br>
+          print("% s dequeued from queue" % str(self.Q[self.front])) <br><br>
+          self.front = (self.front + 1) % (self.capacity) <br>
+          self.size = self.size -1<br>
+          <br>
+        # Function to get front of queue <br>
+        def que_front(self): <br>
+          if self.isEmpty(): <br>
+            print("Queue is empty") <br>
+            <br>
+          print("Front item is", self.Q[self.front]) <br>
+          <br>
+        # Function to get rear of queue <br>
+        def que_rear(self): <br>
+          if self.isEmpty(): <br>
+            print("Queue is empty") <br>
+          print("Rear item is", self.Q[self.rear]) <br>
+          <br>
+          <br>
+      # Driver Code <br>
+      if __name__ == '__main__': <br>
+      <br>
+        queue = Queue(30) <br>
+        queue.EnQueue(10) <br>
+        queue.EnQueue(20) <br>
+        queue.EnQueue(30) <br>
+        queue.EnQueue(40) <br>
+        queue.DeQueue() <br>
+        queue.que_front() <br>
+        queue.que_rear() <br>
+        <br>
+  </td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>

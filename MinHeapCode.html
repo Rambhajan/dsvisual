@@ -1,0 +1,362 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> (Binary heap) Min Heap Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">A binary heap is a heap data structure that takes the form of a binary tree. Binary heaps are a common way of implementing priority queues. The binary heap was introduced by J. W. J. Williams in 1964, as a data structure for heapsort </li><br>
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">How to understand a Min-max heap practically?</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    In computer science, a min-max heap is a complete binary tree data structure which combines the usefulness of both a min-heap and a max-heap, that is, it provides constant time retrieval and logarithmic time removal of both the minimum and maximum elements in it.<br><br>This makes the min-max heap a very useful data structure to implement a double-ended priority queue. Like binary min-heaps and max-heaps, min-max heaps support logarithmic insertion and deletion and can be built in linear time. <br><br>Min-max heaps are often represented implicitly in an array;[4] hence it's referred to as an implicit data structure.<br><br>
+
+    The min-max heap property is: each node at an even level in the tree is less than all of its descendants, while each node at an odd level in the tree is greater than all of its descendants.<br><br>
+    
+    The structure can also be generalized to support other order-statistics operations efficiently, such as find-median, delete-median,[2]find(k) (determine the kth smallest value in the structure) and the operation delete(k) (delete the kth smallest value in the structure), for any fixed value (or set of values) of k. These last two operations can be implemented in constant and logarithmic time, respectively. The notion of min-max ordering can be extended to other structures based on the max- or min-ordering, such as leftist trees, generating a new (and more powerful) class of data structures.[4] A min-max heap can also be useful when implementing an external quicksort.<br><br>
+</li>
+</ul>
+
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px"> Time Complexities of operations on Min heap:</li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    <center>
+        <table border="1px" style="width:100%" style="font-size:20px">
+          <tr>
+            <th>Algorithm</th>
+            <th>Average Case</th>
+            <th> Worst Case</th>
+          </tr>
+          <tr>
+            <th>Space</th>
+            <td>O(1) </td>
+            <td> O(1)</td>
+
+            </td>
+          </tr>
+          <tr>
+            <th>Search</th>
+            <td>O(log n)</td>
+            <td> O(log n)</td>
+
+            </td>
+          </tr>
+          <tr>
+            <th>Insert</th>
+            <td> O(log n)</td>
+            <td> O(log n)</td>
+
+          </tr>
+          <tr>
+            <th>Delete</th>
+            <td> O(log n)</td>
+            <td> O(log n)</td>
+
+            </td>
+          </tr>
+
+        </table>
+      </center>
+
+
+
+</li>
+</ul>
+</br>
+
+
+
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic Min Heap*/</b>
+ 
+  <br><br>
+<td ><br>
+    #include <iostream><br>
+        #include <conio.h><br>
+        using namespace std;<br>
+        void min_heap(int *a, int m, int n){<br>
+           int j, t;<br>
+           t= a[m];<br>
+           j = 2 * m;<br>
+           while (j <= n) {<br>
+              if (j < n && a[j+1] < a[j])<br>
+                 j = j + 1;<br>
+              if (t < a[j])<br>
+                 break;<br>
+              else if (t >= a[j]) {<br>
+                 a[j/2] = a[j];<br>
+                 j = 2 * j;<br>
+              }<br>
+           }<br>
+           a[j/2] = t;<br>
+           return;<br>
+        }<br>
+        void build_minheap(int *a, int n) {<br>
+           int k;<br>
+           for(k = n/2; k >= 1; k--) {<br>
+              min_heap(a,k,n);<br>
+           }<br>
+        }<br>
+        int main() {<br>
+           int n, i;<br>
+           cout<<"enter no of elements of array\n";<br>
+           cin>>n;<br>
+           int a[30];<br>
+           for (i = 1; i <= n; i++) {<br>
+              cout<<"enter element"<<" "<<(i)<<endl;<br>
+              cin>>a[i];<br>
+           }<br>
+           build_minheap(a, n);<br>
+           cout<<"Min Heap\n";<br>
+           for (i = 1; i <= n; i++) {<br>
+              cout<<a[i]<<endl;<br>
+           }<br>
+           getch();<br>
+        }<br>
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement min-heap */</b>
+   
+    <br><br>
+  <td ><br>
+      // Java implementation of Min Heap <br>
+      public class MinHeap { <br>
+        private int[] Heap; <br>
+        private int size; <br>
+        private int maxsize; <br>
+        <br>
+        private static final int FRONT = 1; <br>
+        <br>
+        public MinHeap(int maxsize) <br>
+        { <br>
+          this.maxsize = maxsize; <br>
+          this.size = 0; <br>
+          Heap = new int[this.maxsize + 1]; <br>
+          Heap[0] = Integer.MIN_VALUE; <br>
+        } <br>
+        <br>
+        // Function to return the position of <br>
+        // the parent for the node currently <br>
+        // at pos <br>
+        private int parent(int pos) <br>
+        { <br>
+          return pos / 2; <br>
+        } <br>
+        <br>
+        // Function to return the position of the <br>
+        // left child for the node currently at pos <br>
+        private int leftChild(int pos) <br>
+        { <br>
+          return (2 * pos); <br>
+        } <br>
+        <br>
+        // Function to return the position of <br>
+        // the right child for the node currently <br>
+        // at pos <br>
+        private int rightChild(int pos) <br>
+        { <br>
+          return (2 * pos) + 1; <br>
+        } <br>
+        <br>
+        // Function that returns true if the passed <br>
+        // node is a leaf node <br>
+        private boolean isLeaf(int pos) <br>
+        { <br>
+          if (pos >= (size / 2) && pos <= size) { <br>
+            return true; <br>
+          } <br>
+          return false; <br>
+        } <br>
+        <br>
+        // Function to swap two nodes of the heap <br>
+        private void swap(int fpos, int spos) <br>
+        { <br>
+          int tmp; <br>
+          tmp = Heap[fpos]; <br>
+          Heap[fpos] = Heap[spos]; <br>
+          Heap[spos] = tmp; <br>
+        } <br>
+        <br>
+        // Function to heapify the node at pos <br>
+        private void minHeapify(int pos) <br>
+        { <br>
+          <br>
+          // If the node is a non-leaf node and greater <br>
+          // than any of its child <br>
+          if (!isLeaf(pos)) { <br>
+            if (Heap[pos] > Heap[leftChild(pos)] <br>
+              || Heap[pos] > Heap[rightChild(pos)]) { <br>
+                <br>
+              // Swap with the left child and heapify <br>
+              // the left child <br>
+              if (Heap[leftChild(pos)] < Heap[rightChild(pos)]) { <br>
+                swap(pos, leftChild(pos)); <br>
+                minHeapify(leftChild(pos)); <br>
+              } <br>
+              <br>
+              // Swap with the right child and heapify <br>
+              // the right child <br>
+              else { <br>
+                swap(pos, rightChild(pos)); <br>
+                minHeapify(rightChild(pos)); <br>
+              } <br>
+            } <br>
+          } <br>
+        } <br>
+        <br>
+        // Function to insert a node into the heap <br>
+        public void insert(int element) <br>
+        { <br>
+          if (size >= maxsize) { <br>
+            return; <br>
+          } <br>
+          Heap[++size] = element; <br>
+          int current = size; <br>
+          <br>
+          while (Heap[current] < Heap[parent(current)]) { <br>
+            swap(current, parent(current)); <br>
+            current = parent(current); <br>
+          } <br>
+        } <br>
+        <br>
+        // Function to print the contents of the heap <br>
+        public void print() <br>
+        { <br>
+          for (int i = 1; i <= size / 2; i++) { <br>
+            System.out.print(" PARENT : " + Heap[i] <br>
+                    + " LEFT CHILD : " + Heap[2 * i] <br>
+                    + " RIGHT CHILD :" + Heap[2 * i + 1]); <br>
+            System.out.println(); <br>
+          } <br>
+        } <br>
+        <br>
+        // Function to build the min heap using <br>
+        // the minHeapify <br>
+        public void minHeap() <br>
+        { <br>
+          for (int pos = (size / 2); pos >= 1; pos--) { <br>
+            minHeapify(pos); <br>
+          } <br>
+        } <br>
+        <br>
+        // Function to remove and return the minimum <br>
+        // element from the heap <br>
+        public int remove() <br>
+        { <br>
+          int popped = Heap[FRONT]; <br><br>
+          Heap[FRONT] = Heap[size--]; <br>
+          minHeapify(FRONT); <br>
+          return popped; <br>
+        } <br>
+        <br>
+        // Driver code <br>
+        public static void main(String[] arg) <br>
+        { <br>
+          System.out.println("The Min Heap is "); <br>
+          MinHeap minHeap = new MinHeap(15); <br>
+          minHeap.insert(5); <br>
+          minHeap.insert(3); <br>
+          minHeap.insert(17); <br>
+          minHeap.insert(10); <br>
+          minHeap.insert(84); <br>
+          minHeap.insert(19); <br>
+          minHeap.insert(6); <br>
+          minHeap.insert(22); <br><br>
+          minHeap.insert(9); <br>
+          minHeap.minHeap(); <br>
+          <br>
+          minHeap.print(); <br>
+          System.out.println("The Min val is " + minHeap.remove()); <br>
+        } <br>
+      } <br>
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>
+<br>

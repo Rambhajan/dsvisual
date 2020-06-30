@@ -1,0 +1,478 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Queue Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">A Queue is a linear structure which follows a particular order in which the operations are performed. The order is First In First Out (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer that came first is served first. The difference between stacks and queues is in removing. In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added.<br>
+<br><b>Operations on Queue:</b><br>
+</li><br>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Enqueue:</b>  Adds an item to the queue. If the queue is full, then it is said to be an Overflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Dequeue:</b>  Removes an item from the queue. The items are popped in the same order in which they are pushed. If the queue is empty, then it is said to be an Underflow condition.</li>
+
+</ul>
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">Linked list implementation Of Queue</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    For implementing queue, we need to keep track of two indices, front and rear. We enqueue an item at the rear and dequeue an item from the front. If we simply increment front and rear indices, then there may be problems, the front may reach the end of the array. The solution to this problem is to increase front and rear in circular manner (See this for details)
+</li>
+</ul>
+
+</br>
+</br>
+
+
+<li style="color:black ;font-size: 15px ;line-height: 19px"> Implementation:
+  There are two ways to implement a queue:</br>
+  
+  1. Using array
+  2. Using linked list<br><br>
+
+</li>
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic queue using Linked List
+  operations */</b>
+ 
+  <br><br>
+<td >
+  <br>
+    #include <bits/stdc++.h> <br>
+    using namespace std; <br>
+    <br>
+    struct QNode { <br>
+      int data; <br>
+      QNode* next; <br>
+      QNode(int d) <br>
+      { <br>
+        data = d; <br>
+        next = NULL; <br>
+      } <br>
+    }; <br>
+    <br>
+    struct Queue { <br>
+      QNode *front, *rear; <br>
+      Queue() <br>
+      { <br>
+        front = rear = NULL; <br>
+      } <br>
+      <br>
+      void enQueue(int x) <br>
+      { <br>
+        <br>
+        // Create a new LL node <br>
+        QNode* temp = new QNode(x); <br>
+        <br>
+        // If queue is empty, then <br>
+        // new node is front and rear both <br>
+        if (rear == NULL) { <br>
+          front = rear = temp; <br>
+          return; <br>
+        } <br>
+        <br>
+        // Add the new node at <br>
+        // the end of queue and change rear <br>
+        rear->next = temp; <br>
+        rear = temp; <br>
+      } <br>
+      <br>
+      // Function to remove <br>
+      // a key from given queue q <br>
+      void deQueue() <br>
+      { <br>
+        // If queue is empty, return NULL. <br>
+        if (front == NULL) <br>
+          return; <br>
+          <br>
+        // Store previous front and <br>
+        // move front one node ahead <br>
+        QNode* temp = front; <br>
+        front = front->next; <br>
+        <br>
+        // If front becomes NULL, then <br>
+        // change rear also as NULL <br>
+        if (front == NULL) <br>
+          rear = NULL; <br>
+          <br>
+        delete (temp); <br>
+      } <br>
+    }; <br>
+    <br>
+    // Driven Program <br>
+    int main() <br>
+    { <br>
+      <br>
+      Queue q; <br>
+      q.enQueue(10); <br>
+      q.enQueue(20); <br>
+      q.deQueue(); <br>
+      q.deQueue(); <br>
+      q.enQueue(30); <br>
+      q.enQueue(40); <br>
+      q.enQueue(50); <br>
+      q.deQueue(); <br>
+      cout << "Queue Front : " << (q.front)->data << endl; <br>
+      cout << "Queue Rear : " << (q.rear)->data; <br>
+    } <br>
+    <br>
+    
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b>/* C program to implement basic queue using Linked List
+    operations */</b>
+   
+    <br><br>
+  <td ><br>
+      // A C program to demonstrate linked list based implementation of queue <br>
+      #include <stdio.h> <br>
+      #include <stdlib.h> <br>
+        <br>
+      // A linked list (LL) node to store a queue entry <br>
+      struct QNode { <br>
+        int key; <br>
+        struct QNode* next; <br>
+      }; <br>
+      <br>
+      // The queue, front stores the front node of LL and rear stores the <br>
+      // last node of LL <br>
+      struct Queue { <br>
+        struct QNode *front, *rear; <br>
+      }; <br>
+      <br>
+      // A utility function to create a new linked list node. <br>
+      struct QNode* newNode(int k) <br>
+      { <br>
+        struct QNode* temp = (struct QNode*)malloc(sizeof(struct QNode)); <br>
+        temp->key = k; <br>
+        temp->next = NULL; <br>
+        return temp; <br>
+      } <br>
+      <br>
+      // A utility function to create an empty queue <br>
+      struct Queue* createQueue() <br>
+      { <br>
+        struct Queue* q = (struct Queue*)malloc(sizeof(struct Queue)); <br>
+        q->front = q->rear = NULL; <br>
+        return q; <br>
+      } <br>
+      <br>
+      // The function to add a key k to q <br>
+      void enQueue(struct Queue* q, int k) <br>
+      { <br>
+        // Create a new LL node <br>
+        struct QNode* temp = newNode(k); <br>
+        <br>
+        // If queue is empty, then new node is front and rear both <br>
+        if (q->rear == NULL) { <br>
+          q->front = q->rear = temp; <br>
+          return; <br>
+        } <br>
+        <br>
+        // Add the new node at the end of queue and change rear <br>
+        q->rear->next = temp; <br>
+        q->rear = temp; <br>
+      } <br>
+      <br>
+      // Function to remove a key from given queue q <br>
+      void deQueue(struct Queue* q) <br>
+      { <br>
+        // If queue is empty, return NULL. <br><br>
+        if (q->front == NULL) <br>
+          return; <br>
+          <br>
+        // Store previous front and move front one node ahead <br>
+        struct QNode* temp = q->front; <br>
+        <br>
+        q->front = q->front->next; <br>
+        <br>
+        // If front becomes NULL, then change rear also as NULL <br>
+        if (q->front == NULL) <br>
+          q->rear = NULL; <br>
+          <br>
+        free(temp); <br>
+      } <br>
+      <br>
+      // Driver Program to test anove functions <br>
+      int main() <br>
+      { <br>
+        struct Queue* q = createQueue(); <br>
+        enQueue(q, 10); <br>
+        enQueue(q, 20); <br>
+        deQueue(q); <br>
+        deQueue(q); <br>
+        enQueue(q, 30); <br>
+        enQueue(q, 40); <br>
+        enQueue(q, 50); <br>
+        deQueue(q); <br>
+        printf("Queue Front : %d \n", q->front->key); <br>
+        printf("Queue Rear : %d", q->rear->key); <br>
+        return 0; <br>
+      } <br>
+      <br>
+      </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+
+<!-- ------------------------------------------ -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement basic queue 
+      operations */</b>
+   
+    <br><br>
+  <td ><br>
+      // Java program for linked-list implementation of queue <br>
+      <br>
+      // A linked list (LL) node to store a queue entry <br>
+      class QNode { <br>
+        int key; <br>
+        QNode next; <br>
+        <br>
+        // constructor to create a new linked list node <br>
+        public QNode(int key) <br>
+        { <br>
+          this.key = key; <br>
+          this.next = null; <br>
+        } <br>
+      } <br>
+      <br>
+      // A class to represent a queue <br>
+      // The queue, front stores the front node of LL and rear stores the <br>
+      // last node of LL <br>
+      class Queue { <br>
+        QNode front, rear; <br>
+        <br>
+        public Queue() <br>
+        { <br>
+          this.front = this.rear = null; <br>
+        } <br>
+        <br>
+        // Method to add an key to the queue. <br>
+        void enqueue(int key) <br>
+        { <br>
+          <br>
+          // Create a new LL node <br>
+          QNode temp = new QNode(key);<br> 
+          <br>
+          // If queue is empty, then new node is front and rear both <br>
+          if (this.rear == null) { <br>
+            this.front = this.rear = temp; <br>
+            return; <br>
+          } <br>
+          <br>
+          // Add the new node at the end of queue and change rear <br>
+          this.rear.next = temp; <br>
+          this.rear = temp; <br>
+        } <br>
+        <br>
+        // Method to remove an key from queue. <br>
+        void dequeue() <br>
+        { <br>
+          // If queue is empty, return NULL. <br>
+          if (this.front == null) <br>
+            return; <br>
+            <br>
+          // Store previous front and move front one node ahead <br>
+          QNode temp = this.front; <br>
+          this.front = this.front.next;<br> 
+          <br>
+          // If front becomes NULL, then change rear also as NULL <br>
+          if (this.front == null) <br>
+            this.rear = null; <br>
+        } <br>
+      } <br>
+      <br>
+      // Driver class <br>
+      public class Test { <br>
+        public static void main(String[] args) <br>
+        { <br>
+          Queue q = new Queue(); <br>
+          q.enqueue(10); <br>
+          q.enqueue(20); <br>
+          q.dequeue(); <br>
+          q.dequeue(); <br>
+          q.enqueue(30); <br>
+          q.enqueue(40); <br>
+          q.enqueue(50); <br>
+          q.dequeue(); <br>
+          System.out.println("Queue Front : " + q.front.key); <br>
+          System.out.println("Queue Rear : " + q.rear.key); <br>
+        } <br>
+      } <br>
+     
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement basic queue
+      operations */</b>
+   
+    <br><br>
+  <td ><br>
+      # Python3 program to demonstrate linked list <br>
+      # based implementation of queue <br>
+      <br>
+      # A linked list (LL) node <br>
+      # to store a queue entry <br>
+      class Node: <br>
+      <br>
+        def __init__(self, data): <br>
+          self.data = data <br>
+          self.next = None<br>
+          <br>
+      # A class to represent a queue <br>
+      <br>
+      # The queue, front stores the front node <br>
+      # of LL and rear stores the last node of LL <br>
+      class Queue: <br>
+      <br>
+        def __init__(self): <br>
+          self.front = self.rear = None<br>
+          <br>
+        def isEmpty(self): <br><br>
+          return self.front == None<br>
+          <br>
+        # Method to add an item to the queue <br>
+        def EnQueue(self, item): <br>
+          temp = Node(item) <br>
+          <br>
+          if self.rear == None: <br>
+            self.front = self.rear = temp <br>
+            return<br>
+          self.rear.next = temp <br>
+          self.rear = temp <br>
+          <br>
+        # Method to remove an item from queue <br>
+        def DeQueue(self): <br>
+        <br>
+          if self.isEmpty(): <br>
+            return<br>
+          temp = self.front <br>
+          self.front = temp.next<br>
+          <br>
+          if(self.front == None): <br>
+            self.rear = None<br>
+            <br>
+      # Driver Code <br>
+      if __name__== '__main__': <br>
+        q = Queue() <br>
+        q.EnQueue(10) <br>
+        q.EnQueue(20) <br>
+        q.DeQueue() <br>
+        q.DeQueue() <br>
+        q.EnQueue(30) <br>
+        q.EnQueue(40) <br>
+        q.EnQueue(50) <br>
+      q.DeQueue() <br>
+        print("Queue Front " + str(q.front.data)) <br>
+        print("Queue Rear " + str(q.rear.data)) <br>
+        <br>
+        <br>
+    </td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>

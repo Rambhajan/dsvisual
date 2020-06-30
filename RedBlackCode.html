@@ -1,0 +1,680 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="visualPages.css">
+
+  <title> Data Structure Visualization </title>
+
+  <link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <div class="header">
+      <h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right"
+          href="index.html">back</a></h1>
+    </div>
+
+    <div class="menu">
+      <ul>
+
+        <li> <a href="index.html">Home</a> </li>
+
+        <li> <a href="contact.html">Contact</a></li>
+
+        <li> <a href="faq.html"> F.A.Q </a> </li>
+
+        <li> <a href="about.html"> About us</a> </li>
+
+      </ul>
+
+      <br> <br>
+
+
+    </div>
+
+
+    <div class="content">
+
+      <h1> Red Black Tree Data Structure</h1>
+
+
+      <ol>
+        <li style="color:black;font-size: 15px;line-height: 19px"> red–black tree is a kind of self-balancing binary
+          search tree. Each node stores an extra bit representing color, used to ensure that the tree remains
+          approximately balanced during insertions and deletions.</li><br>
+
+
+
+        <br></br>
+
+        <li style="color:black ;font-size: 15px;line-height: 19px">How to understand a Red Black tree practically?</li>
+
+
+        <ul>
+          <li style="color:green ;font-size: 15px;line-height: 19px">
+            a red–black tree is a kind of self-balancing binary search tree. Each node stores an extra bit representing
+            color, used to ensure that the tree remains approximately balanced during insertions and deletions.<br>
+
+            When the tree is modified, the new tree is rearranged and repainted to restore the coloring properties that
+            constrain how unbalanced the tree can become in the worst case. The properties are designed such that this
+            rearranging and recoloring can be performed efficiently.<br>
+
+            The re-balancing is not perfect, but guarantees searching in O(log n) time, where n is the number of nodes
+            of the tree. The insertion and deletion operations, along with the tree rearrangement and recoloring, are
+            also performed in O(log n) time.<br>
+
+            Tracking the color of each node requires only 1 bit of information per node because there are only two
+            colors. The tree does not contain any other data specific to its being a red–black tree so its memory
+            footprint is almost identical to a classic (uncolored) binary search tree. In many cases, the additional bit
+            of information can be stored at no additional memory cost.<br>
+          </li>
+        </ul>
+
+        </br>
+        <li style="color:black ;font-size: 15px;line-height: 19px"> Time Complexities of operations on RBT:</li><br>
+
+        <ul>
+          <li style="color:green ;font-size: 15px;line-height: 19px">
+
+            <center>
+              <table border="1px" style="width:100%" style="font-size:20px">
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Average Case</th>
+                  <th> Worst Case</th>
+                </tr>
+                <tr>
+                  <th>Space</th>
+                  <td>O(n) </td>
+                  <td> O(n)</td>
+
+                  </td>
+                </tr>
+                <tr>
+                  <th>Search</th>
+                  <td>O(log n)</td>
+                  <td> O(log n)</td>
+
+                  </td>
+                </tr>
+                <tr>
+                  <th>Insert</th>
+                  <td> O(log n)</td>
+                  <td> O(log n)</td>
+
+                </tr>
+                <tr>
+                  <th>Delete</th>
+                  <td> O(log n)</td>
+                  <td> O(log n)</td>
+
+                  </td>
+                </tr>
+
+              </table>
+            </center>
+
+
+
+
+          </li>
+        </ul>
+        </br>
+
+        <center>
+
+
+          </br>
+          <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+            <b>
+              <hr style="border-width: 3px;color:black-dark">
+              /* C++ program to implement basic stack using array
+              operations */</b>
+
+            <br><br>
+            <td><br>
+              <br>
+              // C++ Program to implement Red Black Tree(RB-Tree). <br>
+              <br>
+              #include<iostream><br>
+                <br>
+                using namespace std;<br>
+                <br>
+                struct node<br>
+                {<br>
+                int key;<br>
+                node *parent;<br>
+                char color;<br>
+                node *left;<br><br>
+                node *right;<br>
+                };<br>
+                class RBtree<br>
+                {<br>
+                node *root;<br>
+                node *q;<br>
+                public :<br>
+                RBtree()<br>
+                {<br>
+                q=NULL;<br>
+                root=NULL;<br>
+                }<br>
+                void insert();<br>
+                void insertfix(node *);<br>
+                void leftrotate(node *);<br>
+                void rightrotate(node *);<br>
+                void del();<br>
+                node* successor(node *);<br>
+                void delfix(node *);<br>
+                void delfix(node *);<br>
+                void disp();<br>
+                void display( node *);<br>
+                void search();<br>
+                };<br>
+                void RBtree::insert()<br>
+                {<br>
+                int z,i=0;<br>
+                cout<<"\nEnter key of the node to be inserted: ";<br>
+         cin>>z;<br>
+         node *p,*q;<br>
+         node *t=new node;<br>
+         t->key=z;<br>
+         t->left=NULL;<br>
+         t->right=NULL;<br>
+         t->color='r';<br>
+         p=root;<br>
+         q=NULL;<br>
+         if(root==NULL)<br>
+         {<br>
+               root=t;<br>
+               t->parent=NULL;<br>
+         }<br>
+         else<br>
+         {<br>
+             while(p!=NULL)<br>
+             {<br>
+                  q=p;<br>
+                  if(p->key<t->key)<br>
+                      p=p->right;<br>
+                  else<br>
+                      p=p->left;<br>
+             }<br>
+             t->parent=q;<br>
+             if(q->key<t->key)<br>
+                  q->right=t;<br>
+             else<br>
+                  q->left=t;<br>
+         }<br>
+         insertfix(t);<br>
+    }<br>
+    void RBtree::insertfix(node *t)<br>
+    {<br>
+         node *u;<br>
+         if(root==t)<br>
+         {<br>
+             t->color='b';<br>
+             return;<br>
+         }<br>
+         while(t->parent!=NULL&&t->parent->color=='r')<br>
+         {<br>
+               node *g=t->parent->parent;<br>
+               if(g->left==t->parent)<br>
+               {<br>
+                            if(g->right!=NULL)<br>
+                            {<br>
+                                  u=g->right;<br>
+                                  if(u->color=='r')<br>
+                                  {<br>
+                                       t->parent->color='b';<br>
+                                       u->color='b';<br>
+                                       g->color='r';<br>
+                                       t=g;<br>
+                                  }<br>
+                            }<br>
+                            else<br>
+                            {<br>
+                                if(t->parent->right==t)<br>
+                                {<br>
+                                     t=t->parent;<br>
+                                     leftrotate(t);<br>
+                                }<br>
+                                t->parent->color='b';<br>
+                                g->color='r';<br>
+                                rightrotate(g);<br>
+                            }<br>
+               }<br>
+               else<br>
+               {<br>
+                            if(g->left!=NULL)<br>
+                            {<br>
+                                 u=g->left;<br>
+                                 if(u->color=='r')<br>
+                                 {<br>
+                                      t->parent->color='b';<br>
+                                      u->color='b';<br>
+                                      g->color='r';<br>
+                                      t=g;<br>
+                                 }<br>
+                            }<br>
+                            else<br>
+                            {<br>
+                                if(t->parent->left==t)<br>
+                                {<br>
+                                       t=t->parent;<br>
+                                       rightrotate(t);<br>
+                                }<br>
+                                t->parent->color='b';<br>
+                                g->color='r';<br>
+                                leftrotate(g);<br>
+                            }<br>
+               }<br>
+               root->color='b';<br>
+         }<br>
+    }<br>
+    <br>
+    void RBtree::del()<br>
+    {<br>
+         if(root==NULL)<br>
+         {<br>
+               cout<<" \nEmpty Tree." ;<br>
+                  return ;<br>
+                  }<br>
+                  int x;<br>
+                  cout<<"\nEnter the key of the node to be deleted: ";<br>
+         cin>>x;<br>
+         node *p;<br>
+         p=root;<br>
+         node *y=NULL;<br>
+         node *q=NULL;<br>
+         int found=0;<br>
+         while(p!=NULL&&found==0)<br>
+         {<br>
+               if(p->key==x)<br>
+                   found=1;<br>
+               if(found==0)<br>
+               {<br>
+                     if(p->key<x)<br>
+                        p=p->right;<br>
+                     else<br>
+                        p=p->left;<br>
+               }<br>
+         }<br>
+         if(found==0)<br>
+         {<br>
+                cout<<" \nElement Not Found.";<br>
+                    return ;<br>
+                    }<br>
+                    else<br>
+                    {<br>
+                    cout<<"\nDeleted Element: "<<p->key;<br>
+             cout<<" \nColour: ";<br>
+             if(p->color=='b')<br>
+         cout<<" Black\n";<br>
+                      else<br>
+                      cout<<"Red\n";<br>
+                        <br>
+                        if(p->parent!=NULL)<br>
+                        cout<<"\nParent: "<<p->parent->key;<br>
+             else<br>
+                   cout<<" \nThere is no parent of the node. ";<br>
+             if(p->right!=NULL)<br>
+                   cout<<" \nRight Child: "<<p->right->key;<br>
+             else<br>
+                   cout<<" \nThere is no right child of the node. ";<br>
+             if(p->left!=NULL)<br>
+                   cout<<" \nLeft Child: "<<p->left->key;<br>
+             else<br>
+                   cout<<" \nThere is no left child of the node. ";<br>
+             cout<<" \nNode Deleted.";<br>
+                          if(p->left==NULL||p->right==NULL)<br>
+                          y=p;<br>
+                          else<br>
+                          y=successor(p);<br>
+                          if(y->left!=NULL)<br>
+                          q=y->left;<br>
+                          else<br>
+                          {<br>
+                          if(y->right!=NULL)<br>
+                          q=y->right;<br>
+                          else<br>
+                          q=NULL;<br>
+                          }<br>
+                          if(q!=NULL)<br>
+                          q->parent=y->parent;<br>
+                          if(y->parent==NULL)<br>
+                          root=q;<br>
+                          else<br>
+                          {<br>
+                          if(y==y->parent->left)<br>
+                          y->parent->left=q;<br>
+                          else<br>
+                          y->parent->right=q;<br>
+                          }<br>
+                          if(y!=p)<br>
+                          {<br>
+                          p->color=y->color;<br>
+                          p->key=y->key;<br>
+                          }<br>
+                          if(y->color=='b')<br>
+                          delfix(q);<br>
+                          }<br>
+                          }<br>
+                          <br>
+                          void RBtree::delfix(node *p)<br>
+                          {<br>
+                          node *s;<br>
+                          while(p!=root&&p->color=='b')<br>
+                          {<br>
+                          if(p->parent->left==p)<br>
+                          {<br>
+                          s=p->parent->right;<br>
+                          if(s->color=='r')<br>
+                          {<br>
+                          s->color='b';<br>
+                          p->parent->color='r';<br>
+                          leftrotate(p->parent);<br>
+                          s=p->parent->right;<br>
+                          }<br>
+                          if(s->right->color=='b'&&s->left->color=='b')<br>
+                          {<br>
+                          s->color='r';<br>
+                          p=p->parent;<br>
+                          }<br>
+                          else<br>
+                          {<br>
+                          if(s->right->color=='b')<br>
+                          {<br>
+                          s->left->color=='b';<br>
+                          s->color='r';<br>
+                          rightrotate(s);<br>
+                          s=p->parent->right;<br>
+                          }<br>
+                          s->color=p->parent->color;<br>
+                          p->parent->color='b';<br>
+                          s->right->color='b';<br>
+                          leftrotate(p->parent);<br>
+                          p=root;<br>
+                          }<br>
+                          }<br>
+                          else<br>
+                          {<br>
+                          s=p->parent->left;<br>
+                          if(s->color=='r')<br>
+                          {<br>
+                          s->color='b';<br>
+                          p->parent->color='r';<br>
+                          rightrotate(p->parent);<br>
+                          s=p->parent->left;<br>
+                          }<br>
+                          if(s->left->color=='b'&&s->right->color=='b')<br>
+                          {<br>
+                          s->color='r';<br>
+                          p=p->parent;<br>
+                          }<br>
+                          else<br>
+                          {<br>
+                          if(s->left->color=='b')<br>
+                          {<br>
+                          s->right->color='b';<br>
+                          s->color='r';<br>
+                          leftrotate(s);<br>
+                          s=p->parent->left;<br>
+                          }<br>
+                          s->color=p->parent->color;<br>
+                          p->parent->color='b';<br>
+                          s->left->color='b';<br>
+                          rightrotate(p->parent);<br>
+                          p=root;<br>
+                          }<br>
+                          }<br>
+                          p->color='b';<br>
+                          root->color='b';<br>
+                          }<br>
+                          }<br>
+                          <br>
+                          void RBtree::leftrotate(node *p)<br>
+                          {<br>
+                          if(p->right==NULL)<br>
+                          return ;<br>
+                          else<br>
+                          {<br>
+                          node *y=p->right;<br>
+                          if(y->left!=NULL)<br>
+                          {<br>
+                          p->right=y->left;<br>
+                          y->left->parent=p;<br>
+                          }<br>
+                          else<br>
+                          p->right=NULL;<br><br>
+                          if(p->parent!=NULL)<br>
+                          y->parent=p->parent;<br>
+                          if(p->parent==NULL)<br>
+                          root=y;<br>
+                          else<br>
+                          {<br>
+                          if(p==p->parent->left)<br>
+                          p->parent->left=y;<br>
+                          else<br>
+                          p->parent->right=y;<br>
+                          }<br>
+                          y->left=p;<br>
+                          p->parent=y;<br>
+                          }<br>
+                          }<br>
+                          void RBtree::rightrotate(node *p)<br>
+                          {<br>
+                          if(p->left==NULL)<br>
+                          return ;<br>
+                          else<br>
+                          {<br>
+                          node *y=p->left;<br><br>
+                          if(y->right!=NULL)<br>
+                          {<br>
+                          {<br>
+                          <br> p->left=y->right;<br>
+                          y->right->parent=p;<br>
+                          }<br>
+                          else<br>
+                          p->left=NULL;<br>
+                          if(p->parent!=NULL)<br>
+                          y->parent=p->parent;<br>
+                          if(p->parent==NULL)<br>
+                          root=y;<br>
+                          else<br>
+                          {<br>
+                          if(p==p->parent->left)<br>
+                          p->parent->left=y;<br>
+                          else<br>
+                          p->parent->right=y;<br><br>
+                          }<br>
+                          y->right=p;<br><br>
+                          p->parent=y;<br>
+                          }<br>
+                          }<br>
+                          <br>
+                          node* RBtree::successor(node *p)<br>
+                          {<br>
+                          node *y=NULL;<br>
+                          if(p->left!=NULL)<br>
+                          {<br>
+                          y=p->left;<br>
+                          while(y->right!=NULL)<br>
+                          y=y->right;<br>
+                          }<br>
+                          else<br>
+                          {<br>
+                          y=p->right;<br>
+                          while(y->left!=NULL)<br>
+                          y=y->left;<br>
+                          }<br>
+                          return y;<br>
+                          }<br>
+                          <br>
+                          void RBtree::disp()<br>
+                          {<br>
+                          display(root);<br><br>
+                          }<br>
+                          void RBtree::display(node *p)<br>
+                          {<br>
+                          if(root==NULL)<br>
+                          {<br>
+                          cout<<"\nEmpty Tree.";<br>
+                            return ;<br>
+                            }<br>
+                            if(p!=NULL)<br>
+                            {<br>
+                            cout<<"\n\t NODE: ";<br>
+                    cout<<" \n Key: "<<p->key;<br>
+                    cout<<" \n Colour: ";<br>
+        if(p->color=='b')<br>
+         cout<<" Black";<br>
+                              else<br>
+                              cout<<"Red";<br>
+                                if(p->parent!=NULL)<br>
+                                cout<<"\n Parent: "<<p->parent->key;<br>
+                    else<br>
+                           cout<<" \n There is no parent of the node. ";<br>
+                    if(p->right!=NULL)<br>
+                           cout<<" \n Right Child: "<<p->right->key;<br>
+                    else<br>
+                           cout<<" \n There is no right child of the node. ";<br>
+                    if(p->left!=NULL)<br>
+                           cout<<" \n Left Child: "<<p->left->key;<br>
+                    else<br>
+                           cout<<" \n There is no left child of the node. ";<br>
+                    cout<<endl;<br>
+        if( p->left)<br>
+        {<br>
+                     cout<<" \n\nLeft:\n";<br>
+                                  display(p->left);<br>
+                                  }<br>
+                                  /*else<br>
+                                  cout<<"\nNo Left Child.\n";*/ <br>
+                                    if(p->right)<br>
+                                    {<br>
+                                    cout<<"\n\nRight:\n";<br>
+                                      display(p->right);<br>
+                                      }<br>
+                                      /*else<br>
+                                      cout<<"\nNo Right Child.\n"*/ <br>
+                                        }<br>
+                                        }<br>
+                                        void RBtree::search()<br>
+                                        {<br>
+                                        if(root==NULL)<br>
+                                        {<br>
+                                        cout<<"\nEmpty Tree\n" ;<br>
+                                          return ;<br>
+                                          }<br>
+                                          int x;<br>
+                                          cout<<"\n Enter key of the node to be searched: ";<br>
+         cin>>x;<br>
+         node *p=root;<br>
+         int found=0;<br>
+         while(p!=NULL&& found==0)<br>
+         {<br>
+                if(p->key==x)<br>
+                    found=1;<br>
+                if(found==0)<br>
+                {<br>
+                     if(p->key<x)<br>
+                          p=p->right;<br>
+                     else<br>
+                          p=p->left;<br>
+                }<br>
+         }<br>
+         if(found==0)<br>
+              cout<<" \nElement Not Found.";<br>
+                                            else<br>
+                                            {<br>
+                                            cout<<"\n\t FOUND NODE: ";<br>
+                    cout<<" \n Key: "<<p->key;<br>
+                    cout<<" \n Colour: ";<br>
+        if(p->color=='b')<br>
+         cout<<" Black";<br><br>
+                                              else<br>
+                                              cout<<"Red";<br>
+                                                if(p->parent!=NULL)<br>
+                                                cout<<"\n Parent: "<<p->parent->key;<br>
+                    else<br>
+                           cout<<" \n There is no parent of the node. ";<br>
+                    if(p->right!=NULL)<br>
+                           cout<<" \n Right Child: "<<p->right->key;<br>
+                    else<br>
+                           cout<<" \n There is no right child of the node. ";<br>
+                    if(p->left!=NULL)<br>
+                           cout<<" \n Left Child: "<<p->left->key;<br>
+                    else<br>
+                           cout<< " \n There is no left child of the node. ";<br>
+                    cout<< endl;<br>
+                    <br>
+         }<br>
+    }<br>
+    int main()<br>
+    {<br>
+        int ch,y=0;<br>
+        RBtree obj;<br>
+        do<br>
+        {<br>
+                    cout<<" \n\t RED BLACK TREE " ;<br>
+                    cout<<" \n 1. Insert in the tree ";<br>
+                    cout<<" \n 2. Delete a node from the tree";<br>
+                                                  cout<<"\n 3. Search for an element in the tree";<br>
+                                                    cout<<"\n 4. Display the tree ";<br>
+                    cout<<" \n 5. Exit " ;<br>
+                    cout<<" \nEnter Your Choice: ";<br>
+                    cin>>ch;<br>
+                    switch(ch)<br>
+                    {<br>
+                              case 1 : obj.insert();<br>
+                                       cout<<" \nNode Inserted.\n";<br>
+                                                      break;<br>
+                                                      case 2 : obj.del();<br>
+                                                      break;<br>
+                                                      case 3 : obj.search();<br>
+                                                      break;<br>
+                                                      case 4 : obj.disp();<br>
+                                                      break;<br>
+                                                      case 5 : y=1;<br>
+                                                      break;<br>
+                                                      default : cout<<"\nEnter a Valid Choice.";<br>
+                                                        }<br>
+                                                        cout<<endl;<br>
+                                                          <br>
+                                                          }while(y!=1);<br>
+                                                          return 1;<br>
+                                                          }<br>
+            </td>
+
+          </table>
+        </center>
+        <b>
+          <hr style="border-width: 3px"></b>
+
+        <!-- ------------------------------------------ -->
+
+      </ol>
+      <br>
+      <br>
+      <br>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="footer ;font-size: 12px">
+    Copyright 2020
+  </div>
+
+</body>
+
+</html>

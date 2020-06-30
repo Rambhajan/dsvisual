@@ -1,0 +1,343 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> AVL Tree  Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">AVL tree is a self-balancing binary search tree. It was the first such data structure to be invented. In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property</li><br>
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">AVL Tree Rotations</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+  In AVL tree, after performing operations like insertion and deletion we need to check the balance factor of every node in the tree. If every node satisfies the balance factor condition then we conclude the operation otherwise we must make it balanced. Whenever the tree becomes imbalanced due to any operation we use rotation operations to make the tree balanced.<br>
+
+Rotation operations are used to make the tree balanced.<br>
+<b>Rotation is the process of moving nodes either to left or to right to make the tree balanced.</b><br>
+<br>
+<b>
+    There are four rotations and they are classified into two types.
+
+</b><br>
+
+</li>
+</ul>
+
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px">Single Left Rotation (LL Rotation)</li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    In LL Rotation, every node moves one position to left from the current position. To understand LL Rotation, let us consider the following insertion operation in AVL Tree...
+</li>
+</ul>
+</br>
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px"> TSingle Right Rotation (RR Rotation)</li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    In RR Rotation, every node moves one position to right from the current position. To understand RR Rotation, let us consider the following insertion operation in AVL Tree...
+</li>
+</ul>
+</br>
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px"> Left Right Rotation (LR Rotation)
+  </li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    The LR Rotation is a sequence of single left rotation followed by a single right rotation. In LR Rotation, at first, every node moves one position to the left and one position to right from the current position. To understand LR Rotation, let us consider the following insertion operation in AVL Tree...
+</li>
+</ul>
+</br>
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px">Right Left Rotation (RL Rotation)</li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    The RL Rotation is sequence of single right rotation followed by single left rotation. In RL Rotation, at first every node moves one position to right and one position to left from the current position. To understand RL Rotation, let us consider the following insertion operation in AVL Tree...
+</li>
+</ul>
+</br>
+
+
+
+<li style="color:black ;font-size: 15px ;line-height: 19px"> Operations on an AVL Tree</br><br>
+  
+  1.Search<br><br>
+  2. Insertion<br><br>
+  3. Deletion
+  <br><br>
+
+</li>
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic AVL tree */</b>
+ 
+  <br><br>
+<td ><br>
+    #include<iostream><br>
+        #include<cstdio><br>
+        #include<sstream><br>
+        #include<algorithm><br>
+        #define pow2(n) (1 << (n))<br>
+        using namespace std;<br>
+        struct avl {<br>
+           int d;<br>
+           struct avl *l;<br>
+           struct avl *r;<br>
+        }*r;<br>
+        class avl_tree {<br>
+           public:<br>
+              int height(avl *);<br>
+              int difference(avl *);<br>
+              avl *rr_rotat(avl *);<br>
+              avl *ll_rotat(avl *);<br>
+              avl *lr_rotat(avl*);<br>
+              avl *rl_rotat(avl *);<br>
+              avl * balance(avl *);<br>
+              avl * insert(avl*, int);<br>
+              void show(avl*, int);<br>
+              void inorder(avl *);<br>
+              void preorder(avl *);<br>
+              void postorder(avl*);<br>
+              avl_tree() {<br>
+                 r = NULL;<br>
+              }<br>
+        };<br>
+        int avl_tree::height(avl *t) {<br>
+           int h = 0;<br>
+           if (t != NULL) {<br>
+              int l_height = height(t->l);<br>
+              int r_height = height(t->r);<br>
+              int max_height = max(l_height, r_height);<br>
+              h = max_height + 1;<br>
+           }<br>
+           return h;<br>
+        }<br>
+        int avl_tree::difference(avl *t) {<br>
+           int l_height = height(t->l);<br>
+           int r_height = height(t->r);<br>
+           int b_factor = l_height - r_height;<br>
+           return b_factor;<br>
+        }<br>
+        avl *avl_tree::rr_rotat(avl *parent) {<br>
+           avl *t;<br>
+           t = parent->r;<br>
+           parent->r = t->l;<br>
+           t->l = parent;<br>
+           cout<<"Right-Right Rotation";<br>
+           return t;<br>
+        }<br>
+        avl *avl_tree::ll_rotat(avl *parent) {<br>
+           avl *t;<br>
+           t = parent->l;<br>
+           parent->l = t->r;<br>
+           t->r = parent;<br>
+           cout<<"Left-Left Rotation";<br>
+           return t;<br>
+        }<br>
+        avl *avl_tree::lr_rotat(avl *parent) {<br>
+           avl *t;<br>
+           t = parent->l;<br>
+           parent->l = rr_rotat(t);<br>
+           cout<<"Left-Right Rotation";<br>
+           return ll_rotat(parent);<br>
+        }<br>
+        avl *avl_tree::rl_rotat(avl *parent) {<br>
+           avl *t;<br>
+           t = parent->r;<br>
+           parent->r = ll_rotat(t);<br>
+           cout<<"Right-Left Rotation";<br>
+           return rr_rotat(parent);<br>
+        }<br>
+        avl *avl_tree::balance(avl *t) {<br>
+           int bal_factor = difference(t);<br>
+           if (bal_factor > 1) {<br>
+              if (difference(t->l) > 0)<br>
+                 t = ll_rotat(t);<br>
+              else<br>
+                 t = lr_rotat(t);<br>
+           } else if (bal_factor < -1) {<br>
+              if (difference(t->r) > 0)<br>
+                 t = rl_rotat(t);<br>
+              else<br>
+                 t = rr_rotat(t);<br>
+           }<br>
+           return t;<br>
+        }<br>
+        avl *avl_tree::insert(avl *r, int v) {<br>
+           if (r == NULL) {<br>
+              r = new avl;<br>
+              r->d = v;<br>
+              r->l = NULL;<br>
+              r->r = NULL;<br>
+              return r;<br>
+           } else if (v< r->d) {<br>
+              r->l = insert(r->l, v);<br>
+              r = balance(r);<br>
+           } else if (v >= r->d) {<br>
+              r->r = insert(r->r, v);<br>
+              r = balance(r);<br>
+           } return r;<br>
+        }<br>
+        void avl_tree::show(avl *p, int l) {<br>
+           int i;<br>
+           if (p != NULL) {<br>
+              show(p->r, l+ 1);<br>
+              cout<<" ";<br>
+              if (p == r)<br>
+                 cout << "Root -> ";<br>
+              for (i = 0; i < l&& p != r; i++)<br>
+                 cout << " ";<br>
+                 cout << p->d;<br>
+                 show(p->l, l + 1);<br>
+           }<br>
+        }<br>
+        void avl_tree::inorder(avl *t) {<br>
+           if (t == NULL)<br>
+              return;<br>
+              inorder(t->l);<br>
+              cout << t->d << " ";<br>
+              inorder(t->r);<br>
+        }<br>
+        void avl_tree::preorder(avl *t) {<br>
+           if (t == NULL)<br>
+              return;<br>
+              cout << t->d << " ";<br><br>
+              preorder(t->l);<br>
+              preorder(t->r);<br>
+        }<br>
+        void avl_tree::postorder(avl *t) {<br>
+           if (t == NULL)<br>
+              return;<br>
+              postorder(t ->l);<br>
+              postorder(t ->r);<br>
+              cout << t->d << " ";<br>
+        }<br>
+        int main() {<br>
+           int c, i;<br>
+           avl_tree avl;<br>
+           while (1) {<br>
+              cout << "1.Insert Element into the tree" << endl;<br>
+              cout << "2.show Balanced AVL Tree" << endl;<br>
+              cout << "3.InOrder traversal" << endl;<br>
+              cout << "4.PreOrder traversal" << endl;<br>
+              cout << "5.PostOrder traversal" << endl;<br>
+              cout << "6.Exit" << endl;<br>
+              cout << "Enter your Choice: ";<br><br>
+              cin >> c;<br>
+              switch (c) {<br>
+                 case 1:<br>
+                    cout << "Enter value to be inserted: ";<br>
+                    cin >> i;<br>
+                    r = avl.insert(r, i);<br>
+                 break;<br>
+                 case 2:<br>
+                    if (r == NULL) {<br>
+                       cout << "Tree is Empty" << endl;<br>
+                       continue;<br>
+                    }<br>
+                    cout << "Balanced AVL Tree:" << endl;<br>
+                    avl.show(r, 1);<br>
+                    cout<< endl;<br>
+                 break;<br>
+                 case 3:<br>
+                    cout << "Inorder Traversal:" << endl;<br><br>
+                    avl.inorder(r);<br>
+                    cout << endl;<br>
+                 break;<br>
+                 case 4:<br>
+                    cout << "Preorder Traversal:" << endl;<br>
+                    avl.preorder(r);<br>
+                    cout << endl;<br>
+                 break;<br>
+                 case 5:<br>
+                    cout << "Postorder Traversal:" << endl;<br>
+                    avl.postorder(r);<br>
+                    cout << endl;<br>
+                 break;<br>
+                 case 6:<br>
+                    exit(1);<br>
+                 break;<br>
+                 default:<br>
+                    cout << "Wrong Choice" << endl;<br>
+              }<br>
+           }<br>
+           return 0;<br>
+        }  <br>
+</td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>

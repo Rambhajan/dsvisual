@@ -1,0 +1,362 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Radix Sort Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">Radix sort is a non-comparative sorting algorithm. It avoids comparison by creating and distributing elements into buckets according to their radix. For elements with more than one significant digit, this bucketing process is repeated for each digit, while preserving the ordering of the prior step, until all digits have been considered</li><br>
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">How to understand a Radix Sort Complexity?</li>
+<br><br>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    <center>
+        <table border="1px" style="width:100%" style="font-size:20px">
+          <tr>
+            <th>S. No.</th>
+            <th>Worst Case(time)</th>
+            <th> Worst Case(space)</th>
+          </tr>
+          <tr>
+            <td>1.</td>
+              <td>O(w.n), where w is the number of bits required to store each key.</td>
+            <td>O(w+n)
+            </td>
+          </tr>
+         </table>
+      </center>
+     
+</li>
+</ul>
+
+</br>
+</br>
+
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++/c program to implement Radix Sort
+  operations */</b>
+ 
+  <br><br>
+<td ></br>
+    // C++ implementation of Radix Sort </br>
+    #include<iostream> </br>
+    using namespace std; </br>
+  </br>
+    // A utility function to get maximum value in arr[] </br>
+    int getMax(int arr[], int n) </br>
+    { </br>
+      int mx = arr[0]; </br>
+      for (int i = 1; i < n; i++) </br>
+        if (arr[i] > mx) </br>
+          mx = arr[i]; </br>
+      return mx; </br>
+    } </br>
+  </br>
+    // A function to do counting sort of arr[] according to </br>
+    // the digit represented by exp. </br>
+    void countSort(int arr[], int n, int exp) </br>
+    { </br>
+      int output[n]; // output array </br>
+      int i, count[10] = {0}; </br>
+    </br
+      // Store count of occurrences in count[] </br>
+      for (i = 0; i < n; i++) </br>
+        count[ (arr[i]/exp)%10 ]++; </br>
+      </br>
+      // Change count[i] so that count[i] now contains actual </br>
+      // position of this digit in output[] </br>
+      for (i = 1; i < 10; i++) </br>
+        count[i] += count[i - 1]; </br>
+      </br>
+      // Build the output array </br>
+      for (i = n - 1; i >= 0; i--) </br>
+      { </br>
+        output[count[ (arr[i]/exp)%10 ] - 1] = arr[i]; </br>
+        count[ (arr[i]/exp)%10 ]--; </br>
+      } </br>
+    </br>
+      // Copy the output array to arr[], so that arr[] now </br>
+      // contains sorted numbers according to current digit </br>
+      for (i = 0; i < n; i++) </br>
+        arr[i] = output[i]; </br
+    } </br>
+  </br>
+    // The main function to that sorts arr[] of size n using </br>
+    // Radix Sort </br>
+    void radixsort(int arr[], int n) </br>
+    { </br>
+      // Find the maximum number to know number of digits </br>
+      int m = getMax(arr, n); </br>
+    </br>
+      // Do counting sort for every digit. Note that instead </br>
+      // of passing digit number, exp is passed. exp is 10^i </br>
+      // where i is current digit number </br>
+      for (int exp = 1; m/exp > 0; exp *= 10)</br> 
+        countSort(arr, n, exp); </br>
+    } </br>
+  </br>
+    // A utility function to print an array </br>
+    void print(int arr[], int n) </br>
+    { </br>
+      for (int i = 0; i < n; i++) </br>
+    } </br>
+  </br>
+    // Driver program to test above functions </br>
+    int main() </br>
+    { </br>
+      int arr[] = {170, 45, 75, 90, 802, 24, 2, 66}; </br>
+      int n = sizeof(arr)/sizeof(arr[0]); </br>
+      radixsort(arr, n); </br>
+      print(arr, n); </br>
+      return 0; </br>
+    } </br>
+    
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b>/* Java program to implement Radix Sort
+    operations */</b>
+   
+    <br><br>
+  <td ><br>
+      // Radix sort Java implementation <br>
+      import java.io.*; <br>
+      import java.util.*; <br>
+      <br>
+      class Radix { <br>
+        <br>
+        // A utility function to get maximum value in arr[] <br>
+        static int getMax(int arr[], int n) <br>
+        { <br>
+          int mx = arr[0]; <br>
+          for (int i = 1; i < n; i++) <br>
+            if (arr[i] > mx) <br>
+              mx = arr[i]; <br>
+          return mx; <br>
+        } <br>
+        <br>
+        // A function to do counting sort of arr[] according to <br>
+        // the digit represented by exp. <br>
+        static void countSort(int arr[], int n, int exp) <br>
+        { <br>
+          int output[] = new int[n]; // output array <br>
+          int i; <br>
+          int count[] = new int[10]; <br>
+          Arrays.fill(count,0); <br>
+          <br>
+          // Store count of occurrences in count[] <br>
+          for (i = 0; i < n; i++) <br>
+            count[ (arr[i]/exp)%10 ]++; <br>
+            <br>
+          // Change count[i] so that count[i] now contains <br>
+          // actual position of this digit in output[] <br>
+          for (i = 1; i < 10; i++) <br>
+            count[i] += count[i - 1]; <br>
+            <br>
+          // Build the output array <br>
+          for (i = n - 1; i >= 0; i--) <br>
+          { <br>
+            output[count[ (arr[i]/exp)%10 ] - 1] = arr[i]; <br>
+            count[ (arr[i]/exp)%10 ]--; <br>
+          } <br>
+          <br>
+          // Copy the output array to arr[], so that arr[] now <br>
+          // contains sorted numbers according to curent digit <br>
+          for (i = 0; i < n; i++) <br>
+            arr[i] = output[i]; <br>
+        } <br>
+        <br>
+        // The main function to that sorts arr[] of size n using <br>
+        // Radix Sort <br>
+        static void radixsort(int arr[], int n) <br>
+        { <br>
+          // Find the maximum number to know number of digits <br>
+          int m = getMax(arr, n); <br>
+          <br>
+          // Do counting sort for every digit. Note that instead <br>
+          // of passing digit number, exp is passed. exp is 10^i <br>
+          // where i is current digit number <br>
+          for (int exp = 1; m/exp > 0; exp *= 10) <br>
+            countSort(arr, n, exp); <br>
+        } <br>
+        <br>
+        // A utility function to print an array <br>
+        static void print(int arr[], int n) <br>
+        { <br>
+          for (int i=0; i<n; i++) <br>
+            System.out.print(arr[i]+" "); <br>
+        } <br>
+        <br>
+        <br>
+        /*Driver function to check for above function*/<br>
+        public static void main (String[] args) <br>
+        { <br>
+          int arr[] = {170, 45, 75, 90, 802, 24, 2, 66}; <br>
+          int n = arr.length; <br>
+          radixsort(arr, n); <br>
+          print(arr, n); <br>
+        } <br>
+      } <br>
+      
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement Radix Sort 
+      operations */</b>
+   
+    <br><br>
+  <td ><br>
+      # Python program for implementation of Radix Sort <br>
+      <br>
+      # A function to do counting sort of arr[] according to <br>
+      # the digit represented by exp. <br>
+      def countingSort(arr, exp1): <br>
+      <br>
+        n = len(arr) <br>
+        <br>
+        # The output array elements that will have sorted arr <br>
+        output = [0] * (n) <br>
+        <br>
+        # initialize count array as 0 <br>
+        count = [0] * (10) <br>
+        <br>
+        # Store count of occurrences in count[] <br>
+        for i in range(0, n): <br>
+          index = (arr[i]/exp1) <br>
+          count[ (index)%10 ] += 1<br>
+          <br>
+        # Change count[i] so that count[i] now contains actual <br>
+        # position of this digit in output array <br>
+        for i in range(1,10): <br>
+          count[i] += count[i-1] <br>
+          <br>
+        # Build the output array <br>
+        i = n-1<br>
+        while i>=0:<br> 
+          index = (arr[i]/exp1) <br>
+          output[ count[ (index)%10 ] - 1] = arr[i] <br>
+          count[ (index)%10 ] -= 1<br>
+          i -= 1<br>
+          <br>
+        # Copying the output array to arr[], <br>
+        # so that arr now contains sorted numbers<br> 
+        i = 0<br>
+        for i in range(0,len(arr)): <br>
+          arr[i] = output[i] <br>
+          <br>
+      # Method to do Radix Sort <br>
+      def radixSort(arr): <br>
+      <br>
+        # Find the maximum number to know number of digits <br>
+        max1 = max(arr) <br>
+        <br>
+        # Do counting sort for every digit. Note that instead <br>
+        # of passing digit number, exp is passed. exp is 10^i <br>
+        # where i is current digit number <br>
+        exp = 1<br>
+        while max1/exp > 0: <br>
+          countingSort(arr,exp) <br>
+          exp *= 10<br>
+          <br>
+      # Driver code to test above <br>
+      arr = [ 170, 45, 75, 90, 802, 24, 2, 66] <br>
+      radixSort(arr) <br>
+      <br>
+      for i in range(len(arr)): <br>
+        print(arr[i]), <br>
+        <br>
+      
+      <br>
+  </td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+</div>
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>

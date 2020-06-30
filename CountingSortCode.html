@@ -1,0 +1,396 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Counting Sort Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">Counting sort is a sorting technique based on keys between a specific range. It works by counting the number of objects having distinct key values (kind of hashing). Then doing some arithmetic to calculate the position of each object in the output sequence. </li><br>
+
+
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">How to understand a Counting Sort practically?</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+   <b> Count/Counting Sort –</b><br><br>
+    1. Counting sort is a sorting algorithm that sorts the elements of an array by counting the number of occurrences of each unique element in the array/list/data structure.<br><br>
+    2. The count is stored in an auxiliary array and the sorting is done by mapping the count as an index of the auxiliary array. This mapping is done by performing arithmetic calculations on those counts to determine the positions of each key value(unique element) in the output sequence.<br><br>
+   3. Its running time is linear in the number of items and the difference between the maximum and minimum key values, so it is only suitable for direct use in situations where the variation in keys is not significantly greater than the number of items. It is often used as a subroutine in another sorting algorithm, radix sort, that can handle larger keys more efficiently.<br><br>
+    4. Because counting sort uses key values as indexes into an array, it is not a comparison sort, and the Ω(n log n) lower bound for comparison sorting does not apply to it.<br><br>
+    Time Complexity: O(n+k) </br>where n is the number of elements in input array and k is the range of input.<br><br>
+   <b> Auxiliary Space:</b> O(n+k)<br><br><br>
+    <b>Working –</b><br><br><br>
+    <b>Step 1 –</b> Take input array & range(no of unique integer values involved)<br><br>
+   <b> Step 2 –</b> Create the output array of size same as input array. Create count array with size equal to the range & initialize values to 0.<br><br>
+    <b>Step 3 –</b> Count each element in the input array and place the count at the appropriate index of the count array<br><br>
+   <b> Step 4 –</b> Modify the count array by adding the previous counts(cumulative). The modified count array indicates the position of each object/element in the output array.<br><br>
+    <b>Step 5 –</b> Output each object from the input array into the sorted output array followed by decreasing its count by 1.<br><br>
+    <b>Step 6 –</b> Print the sorted output array.<br><br><br>
+</li>
+</ul>
+
+</br>
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement Counting sort
+  operations */</b>
+ 
+  <br><br>
+<td ><br>
+  // C++ Program for counting sort <br>
+#include<bits/stdc++.h> <br>
+#include<string.h> <br>
+using namespace std; <br>
+#define RANGE 255 <br>
+<br>
+// The main function that sort <br>
+// the given string arr[] in <br>
+// alphabatical order <br>
+void countSort(char arr[])<br> 
+{ <br>
+	// The output character array <br>
+	// that will have sorted arr <br>
+	char output[strlen(arr)]; <br>
+  <br>
+	// Create a count array to store count of inidividul <br>
+	// characters and initialize count array as 0 <br>
+	int count[RANGE + 1], i; <br>
+	memset(count, 0, sizeof(count)); <br>
+  <br>
+	// Store count of each character <br>
+	for(i = 0; arr[i]; ++i) <br>
+		++count[arr[i]]; <br>
+    <br>
+	// Change count[i] so that count[i] now contains actual <br>
+	// position of this character in output array <br>
+	for (i = 1; i <= RANGE; ++i) <br>
+		count[i] += count[i-1]; <br>
+    <br>
+	// Build the output character array <br>
+	for (i = 0; arr[i]; ++i) <br>
+	{ <br>
+		output[count[arr[i]]-1] = arr[i]; <br>
+		--count[arr[i]]; <br>
+	} <br>
+  <br>
+	/* <br>
+	For Stable algorithm <br>
+	for (i = sizeof(arr)-1; i>=0; --i) <br>
+	{ <br>
+		output[count[arr[i]]-1] = arr[i]; <br>
+		--count[arr[i]]; <br>
+	} <br>
+	<br>
+	For Logic : See implementation <br>
+	*/<br>
+  <br>
+	// Copy the output array to arr, so that arr now <br>
+	// contains sorted characters <br>
+	for (i = 0; arr[i]; ++i) <br>
+		arr[i] = output[i]; <br>
+} <br>
+<br>
+// Driver code <br>
+int main() <br>
+{ <br>
+	char arr[] = "geeksforgeeks"; <br>
+  <br>
+	countSort(arr); <br>
+  <br>
+	cout<< "Sorted character array is " << arr; <br>
+	return 0; <br>
+} <br>
+<br>
+<br>
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b>/* C program to implement Counting Sort
+    operations */</b>
+   
+    <br><br>
+  <td ><br>
+    <br>
+      // C Program for counting sort <br>
+      #include <stdio.h> <br>
+      #include <string.h> <br>
+      #define RANGE 255 <br>
+      <br><br>
+      // The main function that sort the given string arr[] in <br>
+      // alphabatical order <br>
+      void countSort(char arr[])<br> 
+      { <br>
+        // The output character array that will have sorted arr <br>
+        char output[strlen(arr)]; <br>
+        <br>
+        // Create a count array to store count of inidividul <br>
+        // characters and initialize count array as 0 <br>
+        int count[RANGE + 1], i; <br>
+        memset(count, 0, sizeof(count)); <br>
+        <br>
+        // Store count of each character <br>
+        for(i = 0; arr[i]; ++i) <br>
+          ++count[arr[i]]; <br>
+          <br>
+        // Change count[i] so that count[i] now contains actual <br>
+        // position of this character in output array <br>
+        for (i = 1; i <= RANGE; ++i) <br>
+          count[i] += count[i-1]; <br>
+          <br>
+        // Build the output character array <br>
+        for (i = 0; arr[i]; ++i) <br>
+        { <br>
+          output[count[arr[i]]-1] = arr[i]; <br>
+          --count[arr[i]]; <br>
+        } <br>
+        <br>
+        /* <br>
+        For Stable algorithm <br>
+        for (i = sizeof(arr)-1; i>=0; --i) <br>
+        { <br>
+          output[count[arr[i]]-1] = arr[i]; <br>
+          --count[arr[i]]; <br>
+        } <br>
+        <br>
+        For Logic : See implementation <br>
+        */<br>
+        <br>
+        // Copy the output array to arr, so that arr now <br>
+        // contains sorted characters <br>
+        for (i = 0; arr[i]; ++i) <br>
+          arr[i] = output[i]; <br>
+      } <br>
+      <br>
+      // Driver program to test above function <br>
+      int main() <br>
+      { <br>
+        char arr[] = "geeksforgeeks";//"applepp"; <br><br>
+        <br>
+        countSort(arr); <br>
+        <br>
+        printf("Sorted character array is %sn", arr); <br>
+        return 0; <br>
+      } <br>
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+
+<!-- ------------------------------------------ -->
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement COunting Sort operations */</b>
+   
+    <br><br>
+  <td ><br>
+      // Java implementation of Counting Sort <br>
+      class CountingSort <br>
+      { <br>
+        void sort(char arr[]) <br>
+        { <br>
+          int n = arr.length; <br>
+          <br>
+          // The output character array that will have sorted arr <br>
+          char output[] = new char[n]; <br>
+          <br>
+          // Create a count array to store count of inidividul <br><br>
+          // characters and initialize count array as 0 <br>
+          int count[] = new int[256]; <br>
+          for (int i=0; i<256; ++i) <br>
+            count[i] = 0; <br>
+            <br>
+          // store count of each character <br>
+          for (int i=0; i<n; ++i) <br>
+            ++count[arr[i]]; <br>
+            <br>
+          // Change count[i] so that count[i] now contains actual <br>
+          // position of this character in output array <br>
+          for (int i=1; i<=255; ++i) <br>
+            count[i] += count[i-1]; <br>
+            <br>
+          // Build the output character array <br>
+          // To make it stable we are operating in reverse order. <br>
+          for (int i = n-1; i>=0; i--) <br>
+          { <br>
+            output[count[arr[i]]-1] = arr[i]; <br>
+            --count[arr[i]]; <br>
+          } <br>
+          <br>
+          // Copy the output array to arr, so that arr now <br>
+          // contains sorted characters <br>
+          for (int i = 0; i<n; ++i) <br>
+            arr[i] = output[i]; <br>
+        } <br>
+        <br>
+        // Driver method <br>
+        public static void main(String args[]) <br>
+        { <br>
+          CountingSort ob = new CountingSort(); <br>
+          char arr[] = {'g', 'e', 'e', 'k', 's', 'f', 'o', <br>
+                'r', 'g', 'e', 'e', 'k', 's'<br>
+                }; <br>
+                <br>
+          ob.sort(arr); <br>
+          <br>
+          System.out.print("Sorted character array is "); <br>
+          for (int i=0; i<arr.length; ++i) <br>
+            System.out.print(arr[i]); <br>
+        } <br>
+      } <br>
+      /*This code is contributed by Rajat Mishra */<br>
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement Counting Sort 
+      operations */</b>
+   
+    <br><br>
+  <td ><br>
+      # Python program for counting sort <br>
+      <br>
+      # The main function that sort the given string arr[] in <br>
+      # alphabetical order <br>
+      def countSort(arr): <br>
+      <br>
+        # The output character array that will have sorted arr <br>
+        output = [0 for i in range(256)] <br>
+        <br>
+        # Create a count array to store count of inidividul <br>
+        # characters and initialize count array as 0 <br>
+        count = [0 for i in range(256)] <br>
+        <br>
+        # For storing the resulting answer since the <br>
+        # string is immutable <br>
+        ans = ["" for _ in arr] <br>
+        <br>
+        # Store count of each character <br>
+        for i in arr: <br>
+          count[ord(i)] += 1<br>
+          <br>
+        # Change count[i] so that count[i] now contains actual <br>
+        # position of this character in output array <br>
+        for i in range(256): <br>
+          count[i] += count[i-1] <br>
+          <br>
+        # Build the output character array <br>
+        for i in range(len(arr)): <br>
+          output[count[ord(arr[i])]-1] = arr[i] <br>
+          count[ord(arr[i])] -= 1<br>
+          <br>
+        # Copy the output array to arr, so that arr now <br>
+        # contains sorted characters <br>
+        for i in range(len(arr)): <br>
+          ans[i] = output[i] <br>
+        return ans <br>
+        <br>
+      # Driver program to test above function <br>
+      arr = "geeksforgeeks"<br>
+      ans = countSort(arr) <br>
+      print "Sorted character array is %s" %("".join(ans)) <br>
+      <br>
+      # This code is contributed by Nikhil Kumar Singh <br>
+      <br>
+  </td><br>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>

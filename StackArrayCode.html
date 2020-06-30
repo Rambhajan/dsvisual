@@ -1,0 +1,436 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+
+<body>
+
+   
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Stak Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+  Mainly the following three basic operations are performed in the stack: </li><br>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Push:</b> Adds an item in the stack. If the stack is full, then it is said to be an Overflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Pop:</b> Removes an item from the stack. The items are popped in the reversed order in which they are pushed. If the stack is empty, then it is said to be an Underflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Peek or top:</b>  Returns top element of stack.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>isEmpty:</b> Returns true if stack is empty, else false.
+  .</li>
+
+</ul>
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">How to understand a stack practically?</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+  There are many real-life examples of a stack. Consider the simple example of plates stacked over one another in a canteen. The plate which is at the top is the first one to be removed, i.e. the plate which has been placed at the bottommost position remains in the stack for the longest period of time. So, it can be simply seen to follow LIFO/FILO order.
+</li>
+</ul>
+
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px"> Time Complexities of operations on stack:</li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+  push(), pop(), isEmpty() and peek() all take O(1) time. We do not run any loop in any of these operations.
+</li>
+</ul>
+</br>
+
+
+<li style="color:black ;font-size: 15px ;line-height: 19px"> Implementation:
+  There are two ways to implement a stack:</br>
+  
+  1. Using array
+  2. Using linked list<br><br>
+
+</li>
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic stack using array
+  operations */</b>
+ 
+  <br><br>
+<td >
+  #include < bits/stdc++.h> </br>
+  
+  using namespace std; </br>
+  
+  #define MAX 1000 </br>
+  
+  class Stack { </br>
+    int top; </br>
+  
+  public: </br>
+    int a[MAX]; // Maximum size of Stack </br>
+  
+    Stack() { top = -1; } </br>
+    bool push(int x); </br>
+    int pop(); </br>
+    int peek(); </br>
+    bool isEmpty(); </br>
+  }; </br>
+  
+  bool Stack::push(int x) </br>
+  { </br>
+    if (top >= (MAX - 1)) { </br>
+      cout << "Stack Overflow"; </br>
+      return false; </br>
+    } </br>
+    else { </br>
+      a[++top] = x; </br>
+      cout << x << " pushed into stack\n"; </br>
+      return true; </br>
+    } </br>
+  } </br>
+</br>
+  int Stack::pop() </br>
+  { </br>
+    if (top < 0) { </br></0>
+      cout << "Stack Underflow"; </br>
+      return 0; </br>
+    } </br>
+    else { </br>
+      int x = a[top--]; </br>
+      return x; </br>
+    } </br>
+  } </br>
+  int Stack::peek() </br>
+  { </br>
+    if (top < 0) { </br>
+      cout << "Stack is Empty"; </br>
+      return 0; </br>
+    } </br>
+    else { </br>
+      int x = a[top]; </br>
+      return x; </br>
+    } </br>
+  } </br>
+</br>
+  bool Stack::isEmpty() </br>
+  { </br>
+    return (top < 0); </br>
+  } </br>
+  
+  // Driver program to test above functions </br>
+  int main() </br>
+  { </br>
+    class Stack s; </br>
+    s.push(10); </br>
+    s.push(20); </br>
+    s.push(30); </br>
+    cout << s.pop() << " Popped from stack\n"; </br>
+  </br>
+    return 0; </br>
+  } </br>
+  
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b>/* C program to implement basic stack using array
+    operations */</b>
+   
+    <br><br>
+  <td >
+     
+      #include <limits.h> <br>
+      #include <stdio.h> <br>
+      #include <stdlib.h> <br>
+      
+      // A structure to represent a stack <br>
+      struct Stack { <br>
+        int top; <br>
+        unsigned capacity; <br>
+        int* array; <br>
+      }; <br>
+      <br>
+      // function to create a stack of given capacity. It initializes size of <br>
+      // stack as 0 <br>
+      struct Stack* createStack(unsigned capacity) <br>
+      { <br>
+        struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack)); <br>
+        stack->capacity = capacity; <br><br>
+        stack->top = -1; <br>
+        stack->array = (int*)malloc(stack->capacity * sizeof(int)); <br>
+        return stack; <br>
+      } <br>
+      <br>
+      // Stack is full when top is equal to the last index <br>
+      int isFull(struct Stack* stack) <br>
+      { <br>
+        return stack->top == stack->capacity - 1; <br>
+      } <br>
+      <br>
+      // Stack is empty when top is equal to -1 <br>
+      int isEmpty(struct Stack* stack) <br>
+      { <br>
+        return stack->top == -1; <br>
+      } <br>
+      <br>
+      // Function to add an item to stack. It increases top by 1 <br>
+      void push(struct Stack* stack, int item) <br>
+      { <br>
+        if (isFull(stack)) <br>
+          return; <br>
+        stack->array[++stack->top] = item; <br>
+        printf("%d pushed to stack\n", item); <br>
+      } <br>
+      <br>
+      // Function to remove an item from stack. It decreases top by 1 <br>
+      int pop(struct Stack* stack) <br>
+      { <br>
+        if (isEmpty(stack)) <br>
+          return INT_MIN; <br>
+        return stack->array[stack->top--]; <br>
+      } <br>
+      <br>
+      // Function to return the top from stack without removing it <br>
+      int peek(struct Stack* stack) <br>
+      { <br>
+        if (isEmpty(stack)) <br>
+          return INT_MIN; <br>
+        return stack->array[stack->top]; <br>
+      } <br>
+      <br>
+      // Driver program to test above functions <br>
+      int main() <br>
+      { <br>
+        struct Stack* stack = createStack(100); <br>
+        <br>
+        push(stack, 10); <br>
+        push(stack, 20); <br>
+        push(stack, 30); <br>
+        <br>
+        printf("%d popped from stack\n", pop(stack)); <br>
+        <br>
+        return 0; <br>
+      } <br>
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+
+<!-- ------------------------------------------ -->
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement basic stack 
+      operations */</b>
+   
+    <br><br>
+  <td >
+     
+      class Stack { <br>
+        static final int MAX = 1000; <br>
+        int top; <br>
+        int a[] = new int[MAX]; // Maximum size of Stack <br>
+        <br>
+        boolean isEmpty() <br>
+        { <br>
+          return (top < 0); <br>
+        } <br>
+        Stack()<br> 
+        { <br>
+          top = -1; <br>
+        } <br>
+        <br>
+        boolean push(int x) <br>
+        { <br>
+          if (top >= (MAX - 1)) { <br>
+            System.out.println("Stack Overflow"); <br>
+            return false; <br>
+          } <br>
+          else {<br> 
+            a[++top] = x; <br>
+            System.out.println(x + " pushed into stack"); <br>
+            return true; <br>
+          } <br>
+        } <br>
+        <br>
+        int pop() <br>
+        { <br>
+          if (top < 0) { <br></0>
+            System.out.println("Stack Underflow"); <br>
+            return 0; <br>
+          } <br>
+          else { <br>
+            int x = a[top--]; <br>
+            return x; <br>
+          } <br>
+        } <br>
+        <br>
+        int peek() <br>
+        { <br>
+          if (top < 0) { <br>
+            System.out.println("Stack Underflow"); <br>
+            return 0; <br>
+          } <br>
+          else { <br>
+            int x = a[top]; <br>
+            return x; <br>
+          } <br>
+        } <br>
+      } <br>
+      <br>
+      // Driver code <br>
+      class Main { <br>
+        public static void main(String args[]) <br>
+        { <br>
+          Stack s = new Stack(); <br>
+          s.push(10); <br>
+          s.push(20); <br>
+          s.push(30); <br>
+          System.out.println(s.pop() + " Popped from stack"); <br>
+        } <br>
+      } <br>
+        
+   
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement basic stack 
+      operations */</b>
+   
+    <br><br>
+  <td >
+     
+      # Python program for implementation of stack <br>
+
+# import maxsize from sys module <br>
+# Used to return -infinite when stack is empty <br>
+from sys import maxsize <br>
+<br>
+# Function to create a stack. It initializes size of stack as 0 <br>
+def createStack(): <br>
+	stack = [] <br>
+	return stack <br>
+  <br>
+# Stack is empty when stack size is 0 <br>
+def isEmpty(stack): <br>
+	return len(stack) == 0<br>
+  <br>
+# Function to add an item to stack. It increases size by 1 <br>
+def push(stack, item): <br>
+	stack.append(item) <br>
+	print(item + " pushed to stack ") <br>
+	<br>
+# Function to remove an item from stack. It decreases size by 1 <br>
+def pop(stack): <br>
+	if (isEmpty(stack)): <br>
+		return str(-maxsize -1) # return minus infinite <br>
+    <br>
+	return stack.pop() <br>
+  <br>
+# Function to return the top from stack without removing it <br>
+def peek(stack): <br>
+	if (isEmpty(stack)):<br> 
+		return str(-maxsize -1) # return minus infinite <br>
+	return stack[len(stack) - 1] <br>
+  <br>
+# Driver program to test above functions	 <br>
+stack = createStack() <br>
+push(stack, str(10)) <br>
+push(stack, str(20)) <br>
+push(stack, str(30)) <br>
+print(pop(stack) + " popped from stack") <br>
+<br>
+  </td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>

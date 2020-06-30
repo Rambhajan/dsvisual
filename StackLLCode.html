@@ -1,0 +1,440 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Stak Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+  Mainly the following three basic operations are performed in the stack: </li><br>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Push:</b> Adds an item in the stack. If the stack is full, then it is said to be an Overflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Pop:</b> Removes an item from the stack. The items are popped in the reversed order in which they are pushed. If the stack is empty, then it is said to be an Underflow condition.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>Peek or top:</b>  Returns top element of stack.</li>
+<li style="color:green ;font-size: 15px;line-height: 19px"> <b>isEmpty:</b> Returns true if stack is empty, else false.
+  .</li>
+
+</ul>
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">How to understand a stack practically?</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+  There are many real-life examples of a stack. Consider the simple example of plates stacked over one another in a canteen. The plate which is at the top is the first one to be removed, i.e. the plate which has been placed at the bottommost position remains in the stack for the longest period of time. So, it can be simply seen to follow LIFO/FILO order.
+</li>
+</ul>
+
+</br>
+<li style="color:black ;font-size: 15px;line-height: 19px"> Time Complexities of operations on stack:</li>
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+  push(), pop(), isEmpty() and peek() all take O(1) time. We do not run any loop in any of these operations.
+</li>
+</ul>
+</br>
+
+
+<li style="color:black ;font-size: 15px ;line-height: 19px"> Implementation:
+  There are two ways to implement a stack:</br>
+  
+  1. Using array
+  2. Using linked list<br><br>
+
+</li>
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic stack using Linked List
+  operations */</b>
+ 
+  <br><br>
+<td ><br>
+    // C++ program for linked list implementation of stack <br>
+    #include <bits/stdc++.h> <br>
+    using namespace std; <br>
+    <br>
+    // A structure to represent a stack <br>
+    class StackNode { <br>
+    public: <br>
+      int data; <br>
+      StackNode* next; <br>
+    }; <br>
+    <br>
+    StackNode* newNode(int data) <br>
+    { <br>
+      StackNode* stackNode = new StackNode(); <br>
+      stackNode->data = data; <br>
+      stackNode->next = NULL; <br>
+      return stackNode; <br>
+    } <br>
+    <br>
+    int isEmpty(StackNode* root) <br>
+    { <br>
+      return !root; <br>
+    } <br>
+    <br>
+    void push(StackNode** root, int data) <br>
+    { <br>
+      StackNode* stackNode = newNode(data); <br>
+      stackNode->next = *root; <br>
+      *root = stackNode; <br>
+      cout << data << " pushed to stack\n"; <br>
+    } <br>
+    <br>
+    int pop(StackNode** root) <br>
+    { <br>
+      if (isEmpty(*root)) <br>
+        return INT_MIN; <br>
+      StackNode* temp = *root; <br>
+      *root = (*root)->next; <br>
+      int popped = temp->data; <br>
+      free(temp); <br>
+      <br>
+      return popped; <br>
+    } <br>
+    <br>
+    int peek(StackNode* root) <br>
+    { <br>
+      if (isEmpty(root)) <br>
+        return INT_MIN; <br>
+      return root->data; <br>
+    } <br>
+    <br>
+    int main() <br>
+    { <br>
+      StackNode* root = NULL; <br>
+      <br>
+      push(&root, 10); <br>
+      push(&root, 20); <br>
+      push(&root, 30); <br>
+      <br>
+      cout << pop(&root) << " popped from stack\n"; <br>
+      <br>
+      cout << "Top element is " << peek(root) << endl; <br>
+      <br>
+      return 0; <br>
+    } <br>
+    <br>
+    <br>
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b>/* C program to implement basic stack using linked List
+    operations */</b>
+   
+    <br><br>
+  <td ><br>
+      // C program for linked list implementation of stack <br>
+      #include <limits.h> <br>
+      #include <stdio.h> <br>
+      #include <stdlib.h> <br>
+        <br>
+      // A structure to represent a stack <br>
+      struct StackNode { <br>
+        int data; <br>
+        struct StackNode* next; <br>
+      }; <br>
+      <br>
+      struct StackNode* newNode(int data) <br>
+      { <br>
+        struct StackNode* stackNode = (struct StackNode*)malloc(sizeof(struct <br>StackNode)); <br>
+        stackNode->data = data; <br>
+        stackNode->next = NULL; <br>
+        return stackNode; <br>
+      } <br>
+      <br>
+      int isEmpty(struct StackNode* root) <br>
+      { <br>
+        return !root; <br>
+      } <br>
+      <br>
+      void push(struct StackNode** root, int data) <br>
+      { <br>
+        struct StackNode* stackNode = newNode(data); <br>
+        stackNode->next = *root; <br>
+        *root = stackNode; <br>
+        printf("%d pushed to stack\n", data); <br>
+      } <br>
+      <br>
+      int pop(struct StackNode** root) <br>
+      { <br>
+        if (isEmpty(*root)) <br>
+          return INT_MIN; <br>
+        struct StackNode* temp = *root; <br>
+        *root = (*root)->next; <br>
+        int popped = temp->data; <br>
+        free(temp); <br>
+        <br>
+        return popped; <br>
+      } <br>
+      <br>
+      int peek(struct StackNode* root) <br>
+      { <br>
+        if (isEmpty(root)) <br>
+          return INT_MIN; <br>
+        return root->data; <br>
+      } <br>
+      <br>
+      int main() <br>
+      { <br>
+        struct StackNode* root = NULL; <br>
+        <br>
+        push(&root, 10); <br>
+        push(&root, 20); <br>
+        push(&root, 30); <br>
+        <br>
+        printf("%d popped from stack\n", pop(&root)); <br>
+        <br>
+        printf("Top element is %d\n", peek(root)); <br>
+        <br>
+        return 0; <br>
+      } <br>
+      <br>
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+
+<!-- ------------------------------------------ -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement basic stack 
+      operations using Linked List */</b>
+   
+    <br><br>
+  <td ><br>
+      
+      <br>
+      public class StackAsLinkedList { <br>
+        <br>
+        StackNode root; <br>
+        <br>
+        static class StackNode { <br>
+          int data; <br>
+          StackNode next; <br>
+          <br>
+          StackNode(int data) <br>
+          { <br>
+            this.data = data; <br>
+          } <br>
+        } <br>
+        <br>
+        public boolean isEmpty() <br>
+        { <br>
+          if (root == null) { <br>
+            return true; <br>
+          } <br>
+          else<br>
+            return false; <br>
+        } <br>
+        <br>
+        public void push(int data) <br>
+        { <br>
+          StackNode newNode = new StackNode(data); <br>
+          <br>
+          if (root == null) { <br>
+            root = newNode; <br>
+          } <br>
+          else {<br> 
+            StackNode temp = root; <br>
+            root = newNode; <br>
+            newNode.next = temp; <br>
+          } <br>
+          System.out.println(data + " pushed to stack"); <br>
+        } <br>
+        <br>
+        public int pop() <br>
+        { <br>
+          int popped = Integer.MIN_VALUE; <br>
+          if (root == null) { <br>
+            System.out.println("Stack is Empty"); <br>
+          } <br>
+          else {<br> 
+            popped = root.data; <br>
+            root = root.next; <br>
+          } <br>
+          return popped; <br>
+        } <br>
+        <br>
+        public int peek() <br>
+        { <br>
+          if (root == null) { <br>
+            System.out.println("Stack is empty"); <br>
+            return Integer.MIN_VALUE; <br>
+          } <br>
+          else {<br> 
+            return root.data; <br>
+          } <br>
+        } <br>
+        <br>
+        public static void main(String[] args) <br>
+        { <br>
+          <br>
+          StackAsLinkedList sll = new StackAsLinkedList(); <br>
+          <br>
+          sll.push(10); <br>
+          sll.push(20); <br>
+          sll.push(30); <br><br>
+          <br>
+          System.out.println(sll.pop() + " popped from stack"); <br>
+          <br>
+          System.out.println("Top element is " + sll.peek()); <br><br>
+        } <br>
+      } <br>
+      <br>
+    
+  </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement basic stack 
+      operations */</b>
+   
+    <br><br>
+  <td >
+     
+      # Python program for linked list implementation of stack <br>
+      <br>
+      # Class to represent a node <br>
+      class StackNode: <br>
+      <br>
+        # Constructor to initialize a node <br>
+        def __init__(self, data): <br>
+          self.data = data <br>
+          self.next = None<br>
+          <br>
+      class Stack: <br>
+      <br>
+        # Constructor to initialize the root of linked list <br>
+        def __init__(self): <br>
+          self.root = None<br>
+          <br>
+        def isEmpty(self): <br>
+          return True if self.root is None else False<br>
+          <br>
+        def push(self, data): <br>
+          newNode = StackNode(data) <br>
+          newNode.next = self.root <br>
+          self.root = newNode <br>
+          print "% d pushed to stack" %(data) <br>
+          <br>
+        def pop(self): <br>
+          if (self.isEmpty()): <br>
+            return float("-inf") <br>
+          temp = self.root <br>
+          self.root = self.root.next<br>
+          popped = temp.data <br>
+          return popped <br>
+          <br>
+        def peek(self): <br>
+          if self.isEmpty():<br> 
+            return float("-inf")<br> 
+          return self.root.data <br>
+          <br>
+      # Driver program to test above class <br>
+      stack = Stack() <br>
+      stack.push(10)		 <br>
+      stack.push(20) <br>
+      stack.push(30) <br>
+      <br>
+      print "% d popped from stack" %(stack.pop()) <br>
+      print "Top element is % d " %(stack.peek()) <br>
+      <br>
+       
+      <br>
+  </td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+</div>
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>
+<br>

@@ -1,0 +1,340 @@
+<html>
+<head>
+<link rel="stylesheet" href="visualPages.css">
+
+<title> Data Structure Visualization </title>
+
+<link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="header">
+<h1>Data Structure Visualizations <a style="color:white;font-weight: bold;font-size: 18px; float:right" href="index.html">back</a></h1> 
+</div>
+
+<div class="menu">
+  <ul>
+
+    <li> <a href="index.html">Home</a> </li>
+    
+    <li> <a href="contact.html">Contact</a></li>
+    
+    <li> <a href="faq.html"> F.A.Q </a> </li>
+    
+    <li> <a href="about.html"> About us</a> </li>
+    
+    </ul>
+
+<br> <br>
+
+
+</div>
+
+
+<div class="content">
+
+<h1> Heap Sort Data Structure</h1>
+
+
+<ol>
+<li style="color:black;font-size: 15px;line-height: 19px">Heap sort is a comparison based sorting technique based on Binary Heap data structure. It is similar to selection sort where we first find the maximum element and place the maximum element at the end. We repeat the same process for remaining element. </li><br>
+
+
+
+
+
+<br></br>
+
+<li style="color:black ;font-size: 15px;line-height: 19px">How to understand a Heap Sort practically?</li>
+
+
+<ul>
+<li style="color:green ;font-size: 15px;line-height: 19px">
+    In computer science, a heap is a specialized tree-based data structure which is essentially an almost complete[1] tree that satisfies the heap property: in a max heap, for any given node C, if P is a parent node of C, then the key (the value) of P is greater than or equal to the key of C. In a min heap, the key of P is less than or equal to the key of C.[2] The node at the "top" of the heap (with no parents) is called the root node.<br><br>
+
+    The heap is one maximally efficient implementation of an abstract data type called a priority queue, and in fact, priority queues are often referred to as "heaps", regardless of how they may be implemented. In a heap, the highest (or lowest) priority element is always stored at the root. However, a heap is not a sorted structure; it can be regarded as being partially ordered. A heap is a useful data structure when it is necessary to repeatedly remove the object with the highest (or lowest) priority.<br><br>
+    
+    A common implementation of a heap is the binary heap, in which the tree is a binary tree (see figure). The heap data structure, specifically the binary heap, was introduced by J. W. J. Williams in 1964, as a data structure for the heapsort sorting algorithm.[3] Heaps are also crucial in several efficient graph algorithms such as Dijkstra's algorithm. When a heap is a complete binary tree, it has a smallest possible height—a heap with N nodes and for each node a branches always has loga N height.<br><br>
+    
+    Note that, as shown in the graphic, there is no implied ordering between siblings or cousins and no implied sequence for an in-order traversal (as there would be in, e.g., a binary search tree). The heap relation mentioned above applies only between nodes and their parents, grandparents, etc. The maximum number of children each node can have depends on the type of heap.<br><br>
+</li>
+</ul>
+
+</br>
+</br>
+
+<center>
+   
+
+</br>
+<table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+<b>
+    <hr style="border-width: 3px;color:black-dark">
+  /* C++ program to implement basic Heap Sort  operations */</b>
+ 
+  <br><br>
+<td >
+  <br>
+    // C++ program for implementation of Heap Sort <br>
+    #include <iostream> <br>
+      <br>
+    using namespace std; <br>
+    <br>
+    // To heapify a subtree rooted with node i which is <br>
+    // an index in arr[]. n is size of heap <br>
+    void heapify(int arr[], int n, int i) <br>
+    { <br>
+      int largest = i; // Initialize largest as root <br>
+      int l = 2*i + 1; // left = 2*i + 1 <br>
+      int r = 2*i + 2; // right = 2*i + 2 <br>
+      <br>
+      // If left child is larger than root <br>
+      if (l < n && arr[l] > arr[largest]) <br>
+        largest = l; <br>
+        <br>
+      // If right child is larger than largest so far <br>
+      if (r < n && arr[r] > arr[largest]) <br>
+        largest = r; <br>
+        <br>
+      // If largest is not root <br>
+      if (largest != i) <br>
+      { <br>
+        swap(arr[i], arr[largest]); <br>
+        <br>
+        // Recursively heapify the affected sub-tree <br>
+        heapify(arr, n, largest); <br>
+      } <br>
+    } <br>
+    <br>
+    // main function to do heap sort <br>
+    void heapSort(int arr[], int n) <br>
+    { <br>
+      // Build heap (rearrange array) <br>
+      for (int i = n / 2 - 1; i >= 0; i--)<br> 
+        heapify(arr, n, i); <br>
+        <br>
+      // One by one extract an element from heap <br>
+      for (int i=n-1; i>0; i--) <br>
+      { <br>
+        // Move current root to end <br>
+        swap(arr[0], arr[i]); <br>
+        <br>
+        // call max heapify on the reduced heap <br>
+        heapify(arr, i, 0); <br>
+      } <br>
+    } <br>
+    <br>
+    /* A utility function to print array of size n */<br>
+    void printArray(int arr[], int n) <br>
+    { <br>
+      for (int i=0; i<n; ++i) <br>
+        cout << arr[i] << " "; <br>
+      cout << "\n"; <br>
+    } <br>
+    <br>
+    // Driver program <br>
+    int main() <br>
+    { <br>
+      int arr[] = {12, 11, 13, 5, 6, 7}; <br>
+      int n = sizeof(arr)/sizeof(arr[0]); <br>
+      <br>
+      heapSort(arr, n); <br>
+      <br>
+      cout << "Sorted array is \n"; <br>
+      printArray(arr, n); <br>
+    } <br>
+    <br>
+</td>
+  
+</table>
+</center>
+<hr style="border-width: 3px;color:black-dark">
+
+
+<!-- ------------------------------------------ -->
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Java program to implement basic stack 
+      operations */</b>
+   
+    <br><br>
+  <td >
+     <br>
+      // Java program for implementation of Heap Sort <br>
+      public class HeapSort <br>
+      { <br>
+        public void sort(int arr[]) <br>
+        { <br>
+          int n = arr.length; <br>
+          <br>
+          // Build heap (rearrange array) <br>
+          for (int i = n / 2 - 1; i >= 0; i--)<br> 
+            heapify(arr, n, i); <br>
+            <br>
+          // One by one extract an element from heap <br>
+          for (int i=n-1; i>0; i--) <br>
+          { <br>
+            // Move current root to end <br>
+            int temp = arr[0]; <br>
+            arr[0] = arr[i]; <br>
+            arr[i] = temp; <br>
+            <br>
+            // call max heapify on the reduced heap <br>
+            heapify(arr, i, 0); <br>
+          } <br>
+        } <br>
+        <br>
+        // To heapify a subtree rooted with node i which is <br>
+        // an index in arr[]. n is size of heap <br>
+        void heapify(int arr[], int n, int i) <br>
+        { <br>
+          int largest = i; // Initialize largest as root <br>
+          int l = 2*i + 1; // left = 2*i + 1 <br>
+          int r = 2*i + 2; // right = 2*i + 2 <br>
+          <br>
+          // If left child is larger than root <br>
+          if (l < n && arr[l] > arr[largest]) <br>
+            largest = l; <br>
+            <br>
+          // If right child is larger than largest so far <br>
+          if (r < n && arr[r] > arr[largest]) <br>
+            largest = r; <br>
+            <br>
+          // If largest is not root <br>
+          if (largest != i) <br>
+          { <br>
+            int swap = arr[i]; <br>
+            arr[i] = arr[largest]; <br>
+            arr[largest] = swap; <br>
+            <br>
+            // Recursively heapify the affected sub-tree <br>
+            heapify(arr, n, largest); <br>
+          } <br>
+        } <br>
+        <br>
+        /* A utility function to print array of size n */<br>
+        static void printArray(int arr[]) <br>
+        { <br>
+          int n = arr.length; <br>
+          for (int i=0; i<n; ++i) <br>
+            System.out.print(arr[i]+" "); <br>
+          System.out.println(); <br>
+        } <br>
+      
+        // Driver program <br>
+        public static void main(String args[]) <br>
+        { <br>
+          int arr[] = {12, 11, 13, 5, 6, 7}; <br>
+          int n = arr.length; <br>
+          <br>
+          HeapSort ob = new HeapSort(); <br>
+          ob.sort(arr); <br>
+          <br>
+          System.out.println("Sorted array is"); <br>
+          printArray(arr); <br>
+        } <br>
+      } <br>
+        </td>
+    
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+
+<center>
+   
+
+  </br>
+  <table id="myInput" border="0px" style="font-size:15px;line-height: 20px;">
+  <b> /* Python program to implement Heap Sort operations */</b>
+   
+    <br><br>
+  <td ><br>
+      # Python program for implementation of heap Sort <br>
+      <br>
+      # To heapify subtree rooted at index i. <br>
+      # n is size of heap <br>
+      def heapify(arr, n, i): <br>
+        largest = i # Initialize largest as root <br>
+        l = 2 * i + 1	 # left = 2*i + 1 <br>
+        r = 2 * i + 2	 # right = 2*i + 2 <br>
+        <br>
+        # See if left child of root exists and is <br>
+        # greater than root <br>
+        if l < n and arr[i] < arr[l]: <br></n>
+          largest = l <br>
+          <br>
+        # See if right child of root exists and is <br>
+        # greater than root <br>
+        if r < n and arr[largest] < arr[r]: <br>
+          largest = r <br>
+          <br>
+        # Change root, if needed <br>
+        if largest != i: <br>
+          arr[i],arr[largest] = arr[largest],arr[i] # swap <br>
+          <br>
+          # Heapify the root. <br>
+          heapify(arr, n, largest)<br> 
+          <br>
+      # The main function to sort an array of given size <br>
+      def heapSort(arr): <br>
+        n = len(arr) <br>
+        <br>
+        # Build a maxheap. <br>
+        for i in range(n//2 - 1, -1, -1): <br>
+          heapify(arr, n, i) <br>
+          <br>
+        # One by one extract elements <br>
+        for i in range(n-1, 0, -1): <br>
+          arr[i], arr[0] = arr[0], arr[i] # swap <br>
+          heapify(arr, i, 0) <br>
+          <br>
+      # Driver code to test above <br>
+      arr = [ 12, 11, 13, 5, 6, 7] <br>
+      heapSort(arr) <br>
+      n = len(arr) <br>
+      print ("Sorted array is") <br>
+      for i in range(n): <br>
+        print ("%d" %arr[i]), <br>
+     
+      <br>
+  </td>
+
+  </table>
+  </center>
+  <b><hr style="border-width: 3px"></b>
+ 
+<!-- ------------------------------------------ -->
+
+</ol>
+<br>
+<br>
+<br>
+
+
+
+
+</div>
+
+
+
+</div>
+
+<div class="footer ;font-size: 12px">
+  Copyright 2020 
+</div>
+
+</body>
+
+</html>
